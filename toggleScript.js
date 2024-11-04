@@ -3,7 +3,7 @@ const navhtml =
 `
     <!-- navbar brand -->
     <div class="navbar-brand">
-      <a href="homepage.html" class="navbar-item">LOGO</a>
+      <a href="#" class="navbar-item">LOGO</a>
       <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -14,7 +14,7 @@ const navhtml =
     <!-- navbar menu -->
     <div class="navbar-menu" id="navMenu">
       <div class="navbar-start">
-        <a href="homepage.html" class="navbar-item">Home</a>
+        <a href="#" class="navbar-item">Home</a>
         <a href="#" class="navbar-item">Food Inventory</a>
         <a href="#" class="navbar-item">About us</a>
       </div>
