@@ -42,6 +42,39 @@ burgerIcon.addEventListener('click', () =>
     // Toggle the "is-active" class
     burgerIcon.classList.toggle("is-active");
     navbarMenu.classList.toggle("is-active");
-  });
+  }
+);
+
+
+
+const maindropdownTrigger = document.querySelector('#main-trigger');
+const maindropdownMenu = document.querySelector('#big-dropdown');
+
+maindropdownTrigger.addEventListener('click', (event) =>
+  {
+    event.stopPropagation();
+    // Toggle the "is-active" class
+    maindropdownMenu.classList.toggle("is-active");
+  }
+);
+
+// useless for now. 
+// const typeDropDownTrig = document.querySelector('#type-drop-trig');
+// const typeMenu = document.querySelector('#type-dropdown');
+
+// typeDropDownTrig.addEventListener('click', (event) =>
+//   {
+//     event.stopPropagation();
+//     // Toggle the "is-active" class
+//     // typeDropDownTrig.classList.toggle("is-active");
+//     typeMenu.classList.toggle("is-active");
+//   }
+// );
+
+
+// could dynamically create it
+
+
+
 
 
