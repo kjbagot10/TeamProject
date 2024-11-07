@@ -58,6 +58,10 @@ maindropdownTrigger.addEventListener('click', (event) =>
   }
 );
 
+
+
+
+
 // useless for now. 
 // const typeDropDownTrig = document.querySelector('#type-drop-trig');
 // const typeMenu = document.querySelector('#type-dropdown');
