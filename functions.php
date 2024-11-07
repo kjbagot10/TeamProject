@@ -1,7 +1,8 @@
+<?php
 function dynListDesc($dbConn, $catIDToCompare)
 { 
     try {
-        $sqlCatDescQuery = "SELECT catID, catDesc FROM EGN_categories";
+        $sqlCatDescQuery = "SELECT item_id, user_id, expiry_date, item_name, FROM inventory_items";
         $sqlCatDescResults = $dbConn->query($sqlCatDescQuery);
         echo "<label>Category</label><br>
         <select name='catID'>";
@@ -21,3 +22,6 @@ function dynListDesc($dbConn, $catIDToCompare)
    
     } 
 }
+
+
+?>
