@@ -10,74 +10,62 @@
 
 </head>
 <body>
-    <div class="container has-text-centered"> <!-- Main container centered on the page -->
-        <div class="title is-4">My Food Inventory</div> <!-- Title for the inventory -->
+    <div class="title is-4">My Food Inventory</div> <!-- Title for the inventory -->
 
-        <div class="fixed-grid has-3-cols"> <!-- Custom grid layout with 3 columns -->
-            <div class="grid">
-                <div class="cell is-col-span-3 is-primary"> <!-- Primary colored cell spanning 3 columns -->
-                    <div class="box"> <!-- Box element for styling -->
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+    <table id="inventoryTable" class="table">
+        <thead>
+            <tr>
+                <th><abbr title='Item Name'>Name</abbr></th>
+                <th><abbr title='Expiry Date'>Exp Date</abbr></th>
+                <th><abbr title='Storage Method'>Strg Meth</abbr></th>
+                <th><abbr title='Type'>Typ</abbr></th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Chicken</td>
+                <td>13-01-24</td>
+                <td>Fridge</td>
+                <td>Meat</td>
+            </tr>  
+            <tr>
+                <td>gravy</td>
+                <td>13-01-24</td>
+                <td>Cupboard</td>
+                <td>gravy</td>
+            </tr>  
+            <tr>
+                <td>Cheese</td>
+                <td>13-01-24</td>
+                <td>Fridge</td>
+                <td>Dairy</td>
+            </tr>  
+        </tbody>
+
+    </table>
                         
-                        <input class="input" type="text" placeholder="Search Items" /> <!-- Text input field -->
-                        <ul class="menu"> <!-- Unordered list for menu items -->
-                            <!-- These can all be generated dynamically using js  -->
-                            <li class="menu-item"> <!-- Individual menu item -->
-                                <div class="is-flex is-justify-content-space-between"> <!-- Flexbox for layout -->
-                                    <span>Item 1</span> <!-- Item name -->
-                                    <button class="button is-small"> <!-- Button for item action -->
-                                        <span class="icon"> <!-- Icon container -->
-                                            <i class="fas fa-times"></i> <!-- Font Awesome icon -->
-                                        </span>
-                                    </button>
-                                </div>
-                            </li>
-
-                            <li class="menu-item"> <!-- Second menu item -->
-                                <div class="is-flex is-justify-content-space-between"> <!-- Flexbox for layout -->
-                                    <span>Item 2</span> <!-- Item name -->
-                                    <button class="button is-small"> <!-- Button for item action -->
-                                        <span class="icon"> <!-- Icon container -->
-                                            <i class="fas fa-times"></i> <!-- Font Awesome icon -->
-                                        </span>
-                                    </button>
-                                </div>
-                            </li>
-                            <li class="menu-item"> <!-- Third menu item -->
-                                <div class="is-flex is-justify-content-space-between"> <!-- Flexbox for layout -->
-                                    <span>Item 3</span> <!-- Item name -->
-                                    <button class="button is-small"> <!-- Button for item action -->
-                                        <span class="icon"> <!-- Icon container -->
-                                            <i class="fas fa-times"></i> <!-- Font Awesome icon -->
-                                        </span>
-                                    </button>
-                                </div>
-                            </li>
-                            <li class='menu-item'> <!-- Second menu item -->
-                                <div class='is-flex is-justify-content-space-between'> <!-- Flexbox for layout -->
-                                    <span>Chicken</span> <!-- Item name -->
-                                    <span>Expiry Date - 10/12/2024 </span>
-                                    <button class='button is-small'> <!-- Button for item action -->
-                                        <span class='icon'> <!-- Icon container -->
-                                            <i class='fas fa-times'></i> <!-- Font Awesome icon -->
-                                        </span>
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="cell is-row-start-2"> <!-- Second row cell for buttons -->
-                    <div class="button">View Recipes</div> <!-- Button to view recipes -->
-                </div>
-                <div class="cell is-row-start-2"> <!-- Second row cell for buttons -->
-                    <a href="addInventoryForm.html" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->
-                </div>
-                <div class="cell is-row-start-2"> <!-- Second row cell for buttons -->
-                    <a href="foodInventory.html" class="button">View Inventory</a> <!-- Button to view inventory -->
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script>
+        function searchByNameFunc() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("inventoryTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0]; // selects the name column 
+            if (td) {
+              txtValue = td.textContend || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+    </script>
+        
 </body>
 </html>

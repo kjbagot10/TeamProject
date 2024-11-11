@@ -45,7 +45,6 @@ function dynTable($dbConn)
             </tr>
         </thead>
         <tbody>
-            <tr>
         ";
         // will dynamically create the table cells
         while ($item = $sqlResults->fetchObject())
@@ -53,7 +52,7 @@ function dynTable($dbConn)
         echo 
         "
         <tr>
-        <th>{$item->item_name}</th>
+            <td>{$item->item_name}</td>
             <td>{$item->expiry_date}</td>
             <td>{$item->storage_type}</td>
             <td>{$item->category}</td>
