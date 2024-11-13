@@ -47,37 +47,112 @@ burgerIcon.addEventListener('click', () =>
 
 
 
-const maindropdownTrigger = document.querySelector('#main-trigger');
-const maindropdownMenu = document.querySelector('#big-dropdown');
+const maindropdownTrigger = document.querySelector('.dropdown-trigger');
+const maindropdownMenu = document.querySelector('.dropdown');
 
-maindropdownTrigger.addEventListener('click', (event) =>
+maindropdownTrigger.addEventListener('click', () =>
   {
-    event.stopPropagation();
+   
+   
     // Toggle the "is-active" class
+   maindropdownTrigger.classList.toggle("is-active");
     maindropdownMenu.classList.toggle("is-active");
   }
 );
 
 
-
-
-
-// useless for now. 
-// const typeDropDownTrig = document.querySelector('#type-drop-trig');
-// const typeMenu = document.querySelector('#type-dropdown');
-
-// typeDropDownTrig.addEventListener('click', (event) =>
-//   {
-//     event.stopPropagation();
-//     // Toggle the "is-active" class
-//     // typeDropDownTrig.classList.toggle("is-active");
-//     typeMenu.classList.toggle("is-active");
-//   }
-// );
-
-
 // could dynamically create it
+// --- dont think I need this asst all
+// function sortTableFunc(whichWayAlpha)
+// {
+//     // $value = val of button pressed. Need to figure how I wll do this.
+//     // Need to figure how to add to the end of the string. 
+//     if (whichWayAlpha == "asc")
+//     {
+//         sortTable("asc");
+//     }
+// }
 
+
+function sortTable(asc) 
+{
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("inventoryTable");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) 
+  {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    
+    //
+    
+      /* Loop through all table rows (except the
+    first, which contains table headers): */
+      for (i = 1; i < (rows.length - 1); i++) 
+      {
+        // Start by saying there should be no switching:
+        shouldSwitch = false;
+        /* Get the two elements you want to compare,
+        one from current row and one from the next: */
+        x = rows[i].getElementsByTagName("TD")[0];
+        y = rows[i + 1].getElementsByTagName("TD")[0];
+        
+        
+        if (asc == "asc")
+        {
+          // Check if the next row is alphabetically lower than current
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+          {
+            // If so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+        // descending alphabetical
+        else if (asc == "desc")
+        {
+          // check if the next row is alphabetically higher than current
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+            {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+        }
+      }
+  }
+
+  if (shouldSwitch) 
+  {
+    /* If a switch has been marked, make the switch
+    and mark that a switch has been done: */
+    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    switching = true;
+  }
+}
+
+function searchByNameFunc() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("inventoryTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0]; // selects the name column 
+    if (td) {
+      txtValue = td.textContend || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+  
 
 
 

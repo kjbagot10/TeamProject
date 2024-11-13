@@ -70,11 +70,5 @@ function dynTable($dbConn)
     }
 }
 //-- use this is basically the outline of the finished function
-function sortTableFunc($dbConn)
-{
-    // $value = val of button pressed. Need to figure how I wll do this.
-    // Need to figure how to add to the end of the string. 
-    $sqlCatDescQuery = "SELECT item_id, user_id, expiry_date, item_name, date_added, storage_type FROM inventory_items ORDER BY {$value}"; 
-
-}
+f
 ?>
