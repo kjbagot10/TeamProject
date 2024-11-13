@@ -72,9 +72,24 @@ maindropdownTrigger.addEventListener('click', () =>
 //         sortTable("asc");
 //     }
 // }
+function sortTablebyAZ()
+{
+  const ascAlphaChk = document.getElementById("ascend-alpha");
+  const descAlphChk = document.getElementById("descend-alpha");
+  if (ascAlphaChk.checked)
+  {
+    sortTableAlpha("asc");
+    descAlphChk.checked = false; // ensures both the sort things can not be checked at same time. 
+  }
+  if (descAlphChk.checked)
+  {
+    sortTableAlpha("desc");
+    ascAlphaChk.checked = false; // ensures both the sort things can not be checked at same time. 
+  }
+  
+}
 
-
-function sortTable(asc) 
+function sortTableAlpha(asc) 
 {
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("inventoryTable");
@@ -123,15 +138,16 @@ function sortTable(asc)
             }
         }
       }
+      if (shouldSwitch) 
+        {
+          /* If a switch has been marked, make the switch
+          and mark that a switch has been done: */
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
   }
 
-  if (shouldSwitch) 
-  {
-    /* If a switch has been marked, make the switch
-    and mark that a switch has been done: */
-    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-    switching = true;
-  }
+  
 }
 
 function searchByNameFunc() {
