@@ -35,10 +35,12 @@ function setFoodInventoryTable($dbConn)
     $queryResult = $dbConn->query($sqlQuery);
 
     while ($rowObj = $queryResult->fetchObject()) {
-        $predefinedTable .= "<tr><td>{$rowObj->item_name}</td>
-                            <td>{$rowObj->expiry_date}</td> 
-                            <td>{$rowObj->storage_type_name}</td>
-                            <td>{$rowObj->category_name}</td></tr> \n";
+        $predefinedTable .= "<tr>
+        <td>{$rowObj->item_name}</td>
+        <td>{$rowObj->expiry_date}</td> 
+        <td>{$rowObj->storage_type_name}</td>
+        <td>{$rowObj->category_name}</td>
+        </tr> \n";
     }
 
     return $predefinedTable;
