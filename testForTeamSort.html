@@ -1,0 +1,58 @@
+<!-- 
+// needd to be able to sort by:
+//   - expiration date: small to big, big to small
+//     - recently added
+//   - alphabetical ascending, descending
+//   - quantity 
+//   - storage type - 3 options I think freezer, cupboard, and fridge
+
+// Alphabetical sort:
+//  - sort on item_name
+//  - get the value from the dropdown menu
+//  - First step create a dropdown menu
+
+
+// "SELECT item_name, item_id, expiry_date, storage_type, quantity ORDER BY $to_sort" 
+-->
+
+<div class="dropdown">
+<div class="dropdown-trigger">
+  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+    <span>Click me</span>
+    <span class="icon is-small">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </button>
+</div>
+<div class="dropdown-menu" id="dropdown-menu" role="menu">
+  <div class="dropdown-content">
+    
+    <a class="dropdown-item">  
+      <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+          <span>Storage method</span>
+          <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <a href="#" class="dropdown-item">Fridge</a>
+        <a href="#" class="dropdown-item">Pantry</a>
+        <a href="#" class="dropdown-item">Freezer</a>
+      </div>
+    </a>
+ 
+    a
+    <a href="#" class="dropdown-item"> Expiration Date: Nearest to Furthest</a>
+    <a href="#" class="dropdown-item"> Expiration Date: Furthest to Nearest</a>
+    <a href="#" class="dropdown-item">  </a>
+    <a href="#" class="dropdown-item"> Form </a>
+    <a href="#" class="dropdown-item"> Elements </a>
+    <a href="#" class="dropdown-item"> Components </a>
+    <a href="#" class="dropdown-item"> Layout </a>
+    <hr class="dropdown-divider" />
+    <a href="#" class="dropdown-item"> More </a>
+  </div>
+</div>
+</div>
