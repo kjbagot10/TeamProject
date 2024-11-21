@@ -171,6 +171,46 @@ function searchByNameFunc() {
       }
     }       
   }
+
+}
+
+function foodTypeSort() 
+{
+  var input, table, tr, type_col, i;
+  
+  input = document.getElementById("meat-check");
+  value = input.value;
+
+  table = document.getElementById("inventoryTable");
+  tr = table.getElementsByTagName("tr");
+  if (input.checked)
+  {
+    for (i=0; i<tr.length; i++)
+    {
+      type_col = tr[i].getElementsByTagName("td")[3];
+      if (type_col)
+      {
+        if (type_col.innerText == value)
+        {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  else
+  {
+    for (i=0; i<tr.length;i++)
+    {
+      type_col = tr[i].getElementsByTagName("td")[3];
+      if (type_col)
+      {
+        tr[i].style.display = "";
+      }
+    }
+  }
+
 }
   
 

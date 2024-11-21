@@ -87,6 +87,13 @@ $dbConn = getConnection();
         <?php echo setFoodInventoryTable($dbConn) ?>
       </tbody>
     </table>
+    <div class="field">
+      <label class="checkbox">
+        Meat
+        <input type="checkbox" id="meat-check" onclick="foodTypeSort()" value="Meats"/>
+      </label>
+    </div>
+
     <script src="toggleScript.js"></script>
   </body>
 </html>
