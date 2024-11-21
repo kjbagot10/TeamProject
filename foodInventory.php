@@ -60,24 +60,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Chicken</td>
-                <td>13-01-24</td>
-                <td>Fridge</td>
-                <td>Meat</td>
-            </tr>  
-            <tr>
-                <td>gravy</td>
-                <td>13-01-24</td>
-                <td>Cupboard</td>
-                <td>gravy</td>
-            </tr>  
-            <tr>
-                <td>Cheese</td>
-                <td>13-01-24</td>
-                <td>Fridge</td>
-                <td>Dairy</td>
-            </tr>  
+          
         </tbody>
 
     </table>
