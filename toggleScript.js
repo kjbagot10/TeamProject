@@ -72,22 +72,26 @@ maindropdownTrigger.addEventListener('click', () =>
 //         sortTable("asc");
 //     }
 // }
-function sortTablebyAZ()
-{
-  const ascAlphaChk = document.getElementById("ascend-alpha");
-  const descAlphChk = document.getElementById("descend-alpha");
-  if (ascAlphaChk.checked)
-  {
-    sortTableAlpha("asc");
-    descAlphChk.checked = false; // ensures both the sort things can not be checked at same time. 
+const ascAlphaChk = document.getElementById("ascend-alpha");
+const descAlphChk = document.getElementById("descend-alpha");
+
+ascAlphaChk.addEventListener("click", function () {
+  if (ascAlphaChk.checked) {
+    descAlphChk.checked = false; // Uncheck Z-A
+    sortTableAlpha("asc"); // Apply A-Z sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking A-Z
   }
-  if (descAlphChk.checked)
-  {
-    sortTableAlpha("desc");
-    ascAlphaChk.checked = false; // ensures both the sort things can not be checked at same time. 
+});
+
+descAlphChk.addEventListener("click", function () {
+  if (descAlphChk.checked) {
+    ascAlphaChk.checked = false; // Uncheck A-Z
+    sortTableAlpha("desc"); // Apply Z-A sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking Z-A
   }
-  
-}
+});
 
 function sortTableAlpha(asc) 
 {

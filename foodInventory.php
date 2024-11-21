@@ -55,13 +55,13 @@ $dbConn = getConnection();
           <div class="dropdown-item">
             <label class="checkbox">
               A-Z
-              <input type="checkbox" id="ascend-alpha" onclick="sortTableAlpha('asc')" />
+              <input type="checkbox" id="ascend-alpha" onclick="sortTablebyAZ('asc')" />
             </label>
           </div>
           <div class="dropdown-item">
             <label class="checkbox">
               Z-A
-              <input type="checkbox" id="descend-alpha" onclick="sortTableAlpha('desc')" />
+              <input type="checkbox" id="descend-alpha" onclick="sortTablebyAZ('desc')" />
             </label>
           </div>
 
