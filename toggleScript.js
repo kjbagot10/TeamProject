@@ -199,6 +199,7 @@ function foodTypeSort()
       }
     }
   }
+  // if the box is unchecked show the rest
   else
   {
     for (i=0; i<tr.length;i++)
