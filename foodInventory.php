@@ -90,18 +90,18 @@ $dbConn = getConnection();
     <div class="field" id="typeChkboxes">
       <label class="checkbox">
         Meat
-        <input type="checkbox" id="meat-check" onclick="foodTypeSort('meat-check')" value="Meats"/>
+        <input type="checkbox" id="meat-check" onclick="foodTypeSort()" value="Meats"/>
       </label>
       <label class="checkbox">
         Grains
-        <input type="checkbox" id="grains-check" onclick="foodTypeSort('grains-check')" value="Grains"</label>
+        <input type="checkbox" id="grains-check" onclick="foodTypeSort()" value="Grains"</label>
       <label class="checkbox">
         Dairy
-        <input type="checkbox" id="dairy-check" onclick="foodTypeSort('dairy-check')" value="Dairy"/>
+        <input type="checkbox" id="dairy-check" onclick="foodTypeSort()" value="Dairy"/>
       </label>
       <label class="checkbox">
         Produce
-        <input type="checkbox" id="produce-check" onclick="foodTypeSort('produce-check')" value="Produce"/>
+        <input type="checkbox" id="produce-check" onclick="foodTypeSort()" value="Produce"/>
       </label>
    </div>
 

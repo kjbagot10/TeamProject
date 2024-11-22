@@ -174,38 +174,69 @@ function searchByNameFunc() {
 
 }
 
-// 
-function foodTypeSort(chk_id) {
-  // Select all checkboxes
-  var inputs = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
-  // Select table and its rows
-  var table = document.getElementById("inventoryTable");
-  var tr = table.getElementsByTagName("tr");
+// // 
+// function foodTypeSort() {
+//   // Select all checkboxes
+//   var inputs = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
+//   // Select table and its rows
+//   var table = document.getElementById("inventoryTable");
+//   var tr = table.getElementsByTagName("tr");
 
-  // Collect checked values
-  const valueArray = [];
-  inputs.forEach(checkbox => {
-      if (checkbox.checked) {
-          valueArray.push(checkbox.value);
-      }
-  });
+//   // Collect checked values
+//   const valueArray = [];
+//   inputs.forEach(checkbox => {
+//       if (checkbox.checked) {
+//           valueArray.push(checkbox.value);
+//       }
+//   });
 
-  // Show/hide table rows based on checked values
-  if (valueArray.length !== 0) {
-      for (let i = 1; i < tr.length; i++) { // Start at 1 to skip table headers
-          let type_col = tr[i].getElementsByTagName("td")[3]; // Column index 3
-          if (type_col) {
-              if (valueArray.includes(type_col.innerText.trim())) {
-                  tr[i].style.display = ""; // Show row
-              } else {
-                  tr[i].style.display = "none"; // Hide row
-              }
-          }
+//   // Show/hide table rows based on checked values
+//   if (valueArray.length !== 0) {
+//       for (let i = 1; i < tr.length; i++) { // Start at 1 to skip table headers
+//           let type_col = tr[i].getElementsByTagName("td")[3]; // Column index 3
+//           if (type_col) {
+//               if (valueArray.includes(type_col.innerText)) {
+//                   tr[i].style.display = ""; // Show row
+//               } else {
+//                   tr[i].style.display = "none"; // Hide row
+//               }
+//           }
+//       }
+//   } else {
+//       // If no checkboxes are checked, display all rows
+//       for (let i = 1; i < tr.length; i++) { // Start at 1 to skip table headers
+//           tr[i].style.display = "";
+//       }
+//   }
+// }
+function foodTypeSort() {
+  // Get all checkboxes
+  const checkboxes = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
+
+  // Collect the values of checked checkboxes
+  const selectedTypes = Array.from(checkboxes)
+      .filter(checkbox => checkbox.checked) // Only checked boxes
+      .map(checkbox => checkbox.value); // Get their values
+
+  // Get the table rows
+  const table = document.getElementById("inventoryTable");
+  const rows = table.getElementsByTagName("tr");
+
+  // If no checkboxes are selected, show all rows
+  if (selectedTypes.length === 0) {
+      for (let i = 1; i < rows.length; i++) {
+          rows[i].style.display = ""; // Reset to visible
       }
-  } else {
-      // If no checkboxes are checked, display all rows
-      for (let i = 1; i < tr.length; i++) { // Start at 1 to skip table headers
-          tr[i].style.display = "";
+      return; // Exit the function
+  }
+
+  // Loop through table rows and show/hide based on selection
+  for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+      const typeCol = rows[i].getElementsByTagName("td")[3]; // Type column (index 3)
+      if (typeCol) {
+          const cellValue = typeCol.innerText.trim();
+          // Show row if type matches selectedTypes; otherwise, hide it
+          rows[i].style.display = selectedTypes.includes(cellValue) ? "" : "none";
       }
   }
 }
