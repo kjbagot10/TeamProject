@@ -77,10 +77,10 @@ $dbConn = getConnection();
     <table id="inventoryTable" class="table">
       <thead>
         <tr>
-          <th><abbr title="Item Name">Name</abbr></th>
-          <th><abbr title="Expiry Date">Exp Date</abbr></th>
-          <th><abbr title="Storage Method">Strg Meth</abbr></th>
-          <th><abbr title="Type">Typ</abbr></th>
+          <th><abbr title="Item Name">Food item</abbr></th>
+          <th><abbr title="Expiry Date">Expiry Date</abbr></th>
+          <th><abbr title="Storage Method">Storage Method</abbr></th>
+          <th><abbr title="Type">Type</abbr></th>
         </tr>
       </thead>
       <tbody>
