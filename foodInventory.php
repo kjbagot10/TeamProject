@@ -55,13 +55,13 @@ $dbConn = getConnection();
           <div class="dropdown-item">
             <label class="checkbox">
               A-Z
-              <input type="checkbox" id="ascend-alpha" onclick="sortTablebyAZ('asc')" />
+              <input type="checkbox" id="ascend-alpha"/>
             </label>
           </div>
           <div class="dropdown-item">
             <label class="checkbox">
               Z-A
-              <input type="checkbox" id="descend-alpha" onclick="sortTablebyAZ('desc')" />
+              <input type="checkbox" id="descend-alpha"/>
             </label>
           </div>
 
@@ -87,12 +87,23 @@ $dbConn = getConnection();
         <?php echo setFoodInventoryTable($dbConn) ?>
       </tbody>
     </table>
-    <div class="field">
+    <div class="field" id="typeChkboxes">
       <label class="checkbox">
         Meat
-        <input type="checkbox" id="meat-check" onclick="foodTypeSort()" value="Meats"/>
+        <input type="checkbox" id="meat-check" onclick="foodTypeSort('meat-check')" value="Meats"/>
       </label>
-    </div>
+      <label class="checkbox">
+        Grains
+        <input type="checkbox" id="grains-check" onclick="foodTypeSort('grains-check')" value="Grains"</label>
+      <label class="checkbox">
+        Dairy
+        <input type="checkbox" id="dairy-check" onclick="foodTypeSort('dairy-check')" value="Dairy"/>
+      </label>
+      <label class="checkbox">
+        Produce
+        <input type="checkbox" id="produce-check" onclick="foodTypeSort('produce-check')" value="Produce"/>
+      </label>
+   </div>
 
     <script src="toggleScript.js"></script>
   </body>
