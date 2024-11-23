@@ -110,7 +110,45 @@ $dbConn = getConnection();
         </div>
       </div>
     </div>
-    <!-- end of type filter dropdown -->
+
+    <!-- beginning of category filter type -->
+    <div class="dropdown" id="storageChkboxes">
+      <div class="dropdown-trigger" onclick="toggleDrop('#storageChkboxes')">
+        <button
+          class="button"
+          aria-haspopup="true"
+          aria-controls="dropdown-menu"
+        >
+          <span>Filter By Storage method</span>
+          <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+          <div class="dropdown-item">
+            <label class="checkbox">
+              Freezer
+              <input type="checkbox" id="freezer-check" onclick="foodTypeSort()" value="Freezer"/>
+            </label>
+          </div>
+          <div class="dropdown-item">
+            <label class="checkbox">
+              Fridge
+              <input type="checkbox" id="fridge-check" onclick="foodTypeSort()" value="Fridge"/>
+            </label>
+          </div>
+          <div class="dropdown-item">
+            <label class="checkbox">
+              Pantry
+              <input type="checkbox" id="pantry-check" onclick="foodTypeSort()" value="Pantry"/>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <table id="inventoryTable" class="table">
       <thead>
         <tr>
