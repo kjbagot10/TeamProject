@@ -64,6 +64,18 @@ $dbConn = getConnection();
               <input type="checkbox" id="descend-alpha"/>
             </label>
           </div>
+          <div class="dropdown-item">
+            <label class="checkbox">
+              Nearest - Furthest
+              <input type="checkbox" id="nearest-date"/>
+            </label>
+          </div>
+          <div class="dropdown-item">
+            <label class="checkbox">
+              Furthest - Nearest
+              <input type="checkbox" id="furthest-date"/>
+            </label>
+          </div>
         </div>
       </div>
     </div>
