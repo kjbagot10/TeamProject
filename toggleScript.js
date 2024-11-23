@@ -45,33 +45,15 @@ burgerIcon.addEventListener('click', () =>
   }
 );
 
+// toggle for the dropdowns
+function toggleDrop(dropdownId)
+{
+  const maindropdownMenu = document.querySelector(dropdownId);
+  maindropdownMenu.classList.toggle("is-active");
+
+}
 
 
-const maindropdownTrigger = document.querySelector('.dropdown-trigger');
-const maindropdownMenu = document.querySelector('.dropdown');
-
-maindropdownTrigger.addEventListener('click', () =>
-  {
-   
-   
-    // Toggle the "is-active" class
-   maindropdownTrigger.classList.toggle("is-active");
-    maindropdownMenu.classList.toggle("is-active");
-  }
-);
-
-
-// could dynamically create it
-// --- dont think I need this asst all
-// function sortTableFunc(whichWayAlpha)
-// {
-//     // $value = val of button pressed. Need to figure how I wll do this.
-//     // Need to figure how to add to the end of the string. 
-//     if (whichWayAlpha == "asc")
-//     {
-//         sortTable("asc");
-//     }
-// }
 const ascAlphaChk = document.getElementById("ascend-alpha");
 const descAlphChk = document.getElementById("descend-alpha");
 
@@ -174,41 +156,7 @@ function searchByNameFunc() {
 
 }
 
-// // 
-// function foodTypeSort() {
-//   // Select all checkboxes
-//   var inputs = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
-//   // Select table and its rows
-//   var table = document.getElementById("inventoryTable");
-//   var tr = table.getElementsByTagName("tr");
 
-//   // Collect checked values
-//   const valueArray = [];
-//   inputs.forEach(checkbox => {
-//       if (checkbox.checked) {
-//           valueArray.push(checkbox.value);
-//       }
-//   });
-
-//   // Show/hide table rows based on checked values
-//   if (valueArray.length !== 0) {
-//       for (let i = 1; i < tr.length; i++) { // Start at 1 to skip table headers
-//           let type_col = tr[i].getElementsByTagName("td")[3]; // Column index 3
-//           if (type_col) {
-//               if (valueArray.includes(type_col.innerText)) {
-//                   tr[i].style.display = ""; // Show row
-//               } else {
-//                   tr[i].style.display = "none"; // Hide row
-//               }
-//           }
-//       }
-//   } else {
-//       // If no checkboxes are checked, display all rows
-//       for (let i = 1; i < tr.length; i++) { // Start at 1 to skip table headers
-//           tr[i].style.display = "";
-//       }
-//   }
-// }
 function foodTypeSort() {
   // Get all checkboxes
   const checkboxes = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
