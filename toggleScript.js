@@ -157,41 +157,90 @@ function searchByNameFunc() {
 }
 
 
-function foodTypeSort() {
-  // Get all checkboxes
-  const checkboxes = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
+// function foodTypeSort() {
+//   // Get all checkboxes
+//   const typecheckboxes = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
+//   // Collect the values of checked checkboxes
+//   const selectedTypes = Array.from(typecheckboxes)
+//       .filter(checkbox => checkbox.checked) // Only checked boxes
+//       .map(checkbox => checkbox.value); // Get their values
 
-  // Collect the values of checked checkboxes
-  const selectedTypes = Array.from(checkboxes)
-      .filter(checkbox => checkbox.checked) // Only checked boxes
-      .map(checkbox => checkbox.value); // Get their values
+//   const storagechkboxes = document.querySelectorAll('#storageChkboxes input[type="checkbox"]');
+//   const selectedStorage = Array.from(storagechkboxes)
+//   .filter(checkbox => checkbox.checked) // Only checked boxes
+//   .map(checkbox => checkbox.value);
+//   // Get the table rows
+//   const table = document.getElementById("inventoryTable");
+//   const rows = table.getElementsByTagName("tr");
 
-  // Get the table rows
-  const table = document.getElementById("inventoryTable");
-  const rows = table.getElementsByTagName("tr");
+//   // If no checkboxes are selected, show all rows
+//   if (selectedTypes.length === 0) {
+//       for (let i = 1; i < rows.length; i++) {
+//           rows[i].style.display = ""; // Reset to visible
+//       }
+//       return; // Exit the function
+//   }
+  
+//   // Loop through table rows and show/hide based on selection
+//   for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+//       const typeCol = rows[i].getElementsByTagName("td")[3]; // Type column (index 3)
+//       const storageCol = rows[i].getElementsByTagName("td")[2];
 
-  // If no checkboxes are selected, show all rows
-  if (selectedTypes.length === 0) {
-      for (let i = 1; i < rows.length; i++) {
-          rows[i].style.display = ""; // Reset to visible
-      }
-      return; // Exit the function
-  }
-  console.log("Selected Types:", selectedTypes);
+//       const typeMatches = selectedTypes.length === 0 || (typeCol && selectedTypes.includes(typeCol.innerText.trim()));
+//       const storageMatches = selectedStorage.length === 0 || (storageCol && selectedStorage.includes(storageCol.innerText.trim()));
+      
+//       rows[i].style.display = (typeMatches && storageMatches) ? "" : "none";
 
-  // Loop through table rows and show/hide based on selection
-  for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
-      const typeCol = rows[i].getElementsByTagName("td")[3]; // Type column (index 3)
-      if (typeCol) {
-          const cellValue = typeCol.innerText.trim();
-          // Show row if type matches selectedTypes; otherwise, hide it
-          rows[i].style.display = selectedTypes.includes(cellValue) ? "" : "none";
-      }
-  }
-}
+//   }
+// }
+
+
 
   
 
 
 
 
+function foodTypeSort() {
+  // Get all type checkboxes
+  const typecheckboxes = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
+  const selectedTypes = Array.from(typecheckboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value); // Get values of checked checkboxes
+  
+  console.log("selectedTypes:", selectedTypes);
+
+  // Get all storage checkboxes
+  const storagechkboxes = document.querySelectorAll('#storageChkboxes input[type="checkbox"]');
+  const selectedStorage = Array.from(storagechkboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value); // Get values of checked checkboxes
+
+  console.log("selectedStorage:", selectedStorage);
+
+  // Get the table rows
+  const table = document.getElementById("inventoryTable");
+  const rows = table.getElementsByTagName("tr");
+
+  // If no checkboxes are selected, show all rows
+  if (selectedTypes.length === 0 && selectedStorage.length === 0) {
+      for (let i = 1; i < rows.length; i++) {
+          rows[i].style.display = ""; // Reset to visible
+      }
+      return;
+  }
+
+  // Loop through table rows and show/hide based on selection
+  for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+      const typeCol = rows[i].getElementsByTagName("td")[3]; // Type column
+      const storageCol = rows[i].getElementsByTagName("td")[2]; // Storage column
+
+      const typeMatches = selectedTypes.length === 0 || (typeCol && selectedTypes.includes(typeCol.innerText.trim()));
+      const storageMatches = selectedStorage.length === 0 || (storageCol && selectedStorage.includes(storageCol.innerText.trim()));
+
+      console.log("Row", i, "typeMatches:", typeMatches, "storageMatches:", storageMatches);
+      console.log(storageCol.innerText);
+
+      rows[i].style.display = (typeMatches && storageMatches) ? "" : "none"; // Both filters must match
+  }
+}
