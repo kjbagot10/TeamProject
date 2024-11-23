@@ -229,6 +229,7 @@ function foodTypeSort() {
       }
       return; // Exit the function
   }
+  console.log("Selected Types:", selectedTypes);
 
   // Loop through table rows and show/hide based on selection
   for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header

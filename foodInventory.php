@@ -37,7 +37,7 @@ $dbConn = getConnection();
       title="Type in a name"
     />
 
-    <div class="dropdown">
+    <div class="dropdown" id="sortAZ">
       <div class="dropdown-trigger">
         <button
           class="button"
@@ -64,16 +64,10 @@ $dbConn = getConnection();
               <input type="checkbox" id="descend-alpha"/>
             </label>
           </div>
-
-          <a class="dropdown-item"> Other dropdown item </a>
-          <a href="#" class="dropdown-item"> Active dropdown item </a>
-          <a href="#" class="dropdown-item"> Other dropdown item </a>
-          <hr class="dropdown-divider" />
-          <a href="#" class="dropdown-item"> With a divider </a>
         </div>
       </div>
     </div>
-
+  
     <table id="inventoryTable" class="table">
       <thead>
         <tr>
@@ -94,7 +88,7 @@ $dbConn = getConnection();
       </label>
       <label class="checkbox">
         Grains
-        <input type="checkbox" id="grains-check" onclick="foodTypeSort()" value="Grains"</label>
+        <input type="checkbox" id="grains-check" onclick="foodTypeSort()" value="Grains"/>
       <label class="checkbox">
         Dairy
         <input type="checkbox" id="dairy-check" onclick="foodTypeSort()" value="Dairy"/>
@@ -103,7 +97,7 @@ $dbConn = getConnection();
         Produce
         <input type="checkbox" id="produce-check" onclick="foodTypeSort()" value="Produce"/>
       </label>
-   </div>
+    </div>
 
     <script src="toggleScript.js"></script>
   </body>
