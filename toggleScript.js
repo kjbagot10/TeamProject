@@ -45,49 +45,37 @@ burgerIcon.addEventListener('click', () =>
   }
 );
 
-
-
-const maindropdownTrigger = document.querySelector('.dropdown-trigger');
-const maindropdownMenu = document.querySelector('.dropdown');
-
-maindropdownTrigger.addEventListener('click', () =>
-  {
-   
-   
-    // Toggle the "is-active" class
-   maindropdownTrigger.classList.toggle("is-active");
-    maindropdownMenu.classList.toggle("is-active");
-  }
-);
-
-
-// could dynamically create it
-// --- dont think I need this asst all
-// function sortTableFunc(whichWayAlpha)
-// {
-//     // $value = val of button pressed. Need to figure how I wll do this.
-//     // Need to figure how to add to the end of the string. 
-//     if (whichWayAlpha == "asc")
-//     {
-//         sortTable("asc");
-//     }
-// }
-function sortTablebyAZ()
+// toggle for the dropdowns
+function toggleDrop(dropdownId)
 {
-  const ascAlphaChk = document.getElementById("ascend-alpha");
-  const descAlphChk = document.getElementById("descend-alpha");
-  if (ascAlphaChk.checked)
-  {
-    sortTableAlpha("asc");
-    descAlphChk.checked = false; // ensures both the sort things can not be checked at same time. 
-  }
-  if (descAlphChk.checked)
-  {
-    sortTableAlpha("desc");
-    ascAlphaChk.checked = false; // ensures both the sort things can not be checked at same time. 
-  }
-  
+  const maindropdownMenu = document.querySelector(dropdownId);
+  maindropdownMenu.classList.toggle("is-active");
+
 }
+
+
+const ascAlphaChk = document.getElementById("ascend-alpha");
+const descAlphChk = document.getElementById("descend-alpha");
+
+ascAlphaChk.addEventListener("click", function () {
+  if (ascAlphaChk.checked) {
+    descAlphChk.checked = false; // Uncheck Z-A
+    sortTableAlpha("asc"); // Apply A-Z sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking A-Z
+  }
+});
+
+descAlphChk.addEventListener("click", function () {
+  if (descAlphChk.checked) {
+    ascAlphaChk.checked = false; // Uncheck A-Z
+    sortTableAlpha("desc"); // Apply Z-A sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking Z-A
+  }
+});
+
+
 
 function sortTableAlpha(asc) 
 {
@@ -102,8 +90,6 @@ function sortTableAlpha(asc)
     switching = false;
     rows = table.rows;
     
-    //
-    
       /* Loop through all table rows (except the
     first, which contains table headers): */
       for (i = 1; i < (rows.length - 1); i++) 
@@ -112,10 +98,9 @@ function sortTableAlpha(asc)
         shouldSwitch = false;
         /* Get the two elements you want to compare,
         one from current row and one from the next: */
-        x = rows[i].getElementsByTagName("TD")[0];
-        y = rows[i + 1].getElementsByTagName("TD")[0];
-        
-        
+        x = rows[i].getElementsByTagName("td")[0];
+        y = rows[i + 1].getElementsByTagName("td")[0];
+         
         if (asc == "asc")
         {
           // Check if the next row is alphabetically lower than current
@@ -167,9 +152,91 @@ function searchByNameFunc() {
       }
     }       
   }
+
 }
+
+function foodTypeSort() {
+  // Get all type checkboxes
+  const typecheckboxes = document.querySelectorAll('#typeChkboxes input[type="checkbox"]');
+  const selectedTypes = Array.from(typecheckboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value); // Get values of checked checkboxes
   
+  console.log("selectedTypes:", selectedTypes);
+
+  // Get all storage checkboxes
+  const storagechkboxes = document.querySelectorAll('#storageChkboxes input[type="checkbox"]');
+  const selectedStorage = Array.from(storagechkboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value); // Get values of checked checkboxes
+
+  console.log("selectedStorage:", selectedStorage);
+
+  // Get the table rows
+  const table = document.getElementById("inventoryTable");
+  const rows = table.getElementsByTagName("tr");
+
+  // If no checkboxes are selected, show all rows
+  if (selectedTypes.length === 0 && selectedStorage.length === 0) {
+      for (let i = 1; i < rows.length; i++) {
+          rows[i].style.display = ""; // Reset to visible
+      }
+      return;
+  }
+
+  // Loop through table rows and show/hide based on selection
+  for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+      const typeCol = rows[i].getElementsByTagName("td")[3]; // Type column
+      const storageCol = rows[i].getElementsByTagName("td")[2]; // Storage column
+
+      const typeMatches = selectedTypes.length === 0 || (typeCol && selectedTypes.includes(typeCol.innerText.trim()));
+      const storageMatches = selectedStorage.length === 0 || (storageCol && selectedStorage.includes(storageCol.innerText.trim()));
+
+      console.log("Row", i, "typeMatches:", typeMatches, "storageMatches:", storageMatches);
+      console.log(storageCol.innerText);
+
+      rows[i].style.display = (typeMatches && storageMatches) ? "" : "none"; // Both filters must match
+  }
+}
 
 
+const nfCheckbox = document.getElementById("nearest-date");
+const fnCheckbox = document.getElementById("furthest-date");
 
+nfCheckbox.addEventListener("click", function () {
+  if (nfCheckbox.checked)
+  {
+    fnCheckbox.checked = false;
+    sortTableByDate(true);
+  }
+})
+
+fnCheckbox.addEventListener("click", function () {
+  if (fnCheckbox.checked)
+  {
+    nfCheckbox.checked = false;
+    sortTableByDate(false);
+  }
+})
+
+function sortTableByDate(isAscending) {
+  const table = document.getElementById("inventoryTable");
+  const rows = Array.from(table.getElementsByTagName("tr")).slice(1); // Skip the header row
+
+  rows.sort((rowA, rowB) => {
+    const dateA = new Date(rowA.getElementsByTagName("td")[1].innerText.trim());
+    const dateB = new Date(rowB.getElementsByTagName("td")[1].innerText.trim());
+
+    // Toggle sorting order
+    if (isAscending) {
+      return dateA - dateB; // Ascending
+    } else {
+      return dateB - dateA; // Descending
+    }
+  });
+
+  // Reorder rows and toggle sorting order
+  rows.forEach(row => table.getElementsByTagName("tbody")[0].appendChild(row));
+  isAscending = !isAscending; // Toggle the sorting order for the next click
+}
 
