@@ -36,6 +36,11 @@
 														<label for="label">Expiry Date</label>
 														<input class="input" type="date" placeholder="Expiry Date" /> <!-- Text input field -->
 												</div>
+												<div class="cell is-row-start-3 is-col-start-2">
+														<label for="label">Type</label>
+														<input class="input" type="date" placeholder="Expiry Date" /> <!-- Text input field -->
+												</div>
+
 										</div>
 										
 
