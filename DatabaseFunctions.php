@@ -46,4 +46,46 @@ function setFoodInventoryTable($dbConn)
     return $predefinedTable;
 }
 
+ function getCatForSort($dbConn)
+  {
+    $sqlQuery = "
+    SELECT 
+        category_id, category_name
+    FROM 
+        GROUP_categories;
+    ";
+    $queryResult = $dbConn->query($sqlQuery);
+    while ($rowObj = $queryResult->fetchObject())
+    {
+        echo "
+        <div class='dropdown-item'>
+            <label class='checkbox'>
+                {$rowObj->category_name}
+                <input type='checkbox' id='{$rowObj->category_id}' onclick='foodTypeSort()' value='{$rowObj->category_name}'/>
+            </label>
+        </div>
+        ";
+    }
+ }
+ function getCatForAdd($dbConn)
+  {
+    $sqlQuery = "
+    SELECT 
+        category_id, category_name
+    FROM 
+        GROUP_categories;
+    ";
+    $queryResult = $dbConn->query($sqlQuery);
+    while ($rowObj = $queryResult->fetchObject())
+    {
+        echo "
+        <div class='dropdown-item'>
+            <label class='checkbox'>
+                {$rowObj->category_name}
+                <input type='checkbox' id='{$rowObj->category_id}' value='{$rowObj->category_name}'/>
+            </label>
+        </div>
+        ";
+    }
+ }
 ?>

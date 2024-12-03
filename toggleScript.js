@@ -46,11 +46,32 @@ burgerIcon.addEventListener('click', () =>
 );
 
 // toggle for the dropdowns
-function toggleDrop(dropdownId)
-{
+// function toggleDrop(dropdownId)
+// {
+//   const maindropdownMenu = document.querySelector(dropdownId);
+//   maindropdownMenu.classList.toggle("is-active");
+
+// }
+function toggleDrop(dropdownId) {
   const maindropdownMenu = document.querySelector(dropdownId);
+
+  // Toggle the dropdown menu visibility
   maindropdownMenu.classList.toggle("is-active");
 
+  // Add a one-time event listener to the document to detect clicks outside
+  function handleOutsideClick(event) {
+    if (!maindropdownMenu.contains(event.target)) {
+      maindropdownMenu.classList.remove("is-active");
+      document.removeEventListener("click", handleOutsideClick);
+    }
+  }
+
+  // Attach the event listener if the menu is now active
+  if (maindropdownMenu.classList.contains("is-active")) {
+    setTimeout(() => {
+      document.addEventListener("click", handleOutsideClick);
+    }, 0); // Timeout to prevent the click event that toggled the menu from immediately closing it
+  }
 }
 
 
@@ -145,7 +166,7 @@ function searchByNameFunc() {
     td = tr[i].getElementsByTagName("td")[0]; // selects the name column 
     if (td) {
       txtValue = td.textContend || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      if (txtValue.toUpperCase().startsWith(filter)) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";

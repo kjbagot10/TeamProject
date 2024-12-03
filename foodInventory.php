@@ -95,30 +95,7 @@ $dbConn = getConnection();
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Meat
-              <input type="checkbox" id="meat-check" onclick="foodTypeSort()" value="Meats"/>
-            </label>
-          </div>
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Grains
-              <input type="checkbox" id="grains-check" onclick="foodTypeSort()" value="Grains"/>
-            </label>
-          </div>
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Dairy
-              <input type="checkbox" id="dairy-check" onclick="foodTypeSort()" value="Dairy"/>
-            </label>
-          </div>
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Produce
-              <input type="checkbox" id="produce-check" onclick="foodTypeSort()" value="Produce"/>
-            </label>
-          </div>
+          <?php echo getCatForSort($dbConn) ?>
         </div>
       </div>
     </div>
