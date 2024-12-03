@@ -53,7 +53,7 @@
 								<a href="addInventoryForm.html" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->
 						</div>
 						<div class="cell is-row-start-2"> <!-- Second row cell for buttons -->
-								<a href="foodInventory.html" class="button">View Inventory</a> <!-- Button to view inventory -->
+								<a href="foodInventory.php" class="button">View Inventory</a> <!-- Button to view inventory -->
 						</div>
 				</div>
 		</div>

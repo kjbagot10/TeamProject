@@ -1,0 +1,15 @@
+Things that are added purely from form
+  - type from dropdown list
+  - name of product
+  - expiry date
+  - storage from dropdown list
+
+Added from predefined list
+  - select product
+  - enter day bought and then use the addDate line from setInventory
+
+Add by barcode number
+  - enter barcode number
+    - see if name matches with any products in predefined list.
+  - add expiry date. 
+  
