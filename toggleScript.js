@@ -145,7 +145,7 @@ function searchByNameFunc() {
     td = tr[i].getElementsByTagName("td")[0]; // selects the name column 
     if (td) {
       txtValue = td.textContend || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      if (txtValue.toUpperCase().startsWith(filter)) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
