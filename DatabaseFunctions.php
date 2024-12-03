@@ -15,7 +15,7 @@ function getConnection()
     }
 }
 
-function setFoodInventoryTable($dbConn)
+function setPredefTable($dbConn)
 {
     $predefinedTable = "";
     //Querry For foodInventory Table
@@ -88,4 +88,25 @@ function setFoodInventoryTable($dbConn)
         ";
     }
  }
+
+ function setFoodInventoryTable($dbConn): array
+ {
+    $sql = "
+        SELECT 
+            GROUP_inventory_items.item_name,
+            GROUP_inventory_items.expiry_date,
+            GROUP_categories.category_name,
+            GROUP_storage_types.storage_type_name
+        FROM 
+            GROUP_inventory_items
+        INNER JOIN 
+            GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_name
+        INNER JOIN 
+            GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_name
+				WHERE GROUP_inventory_items.user = {$userID}
+						"; // need to find where the session data is stored
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
