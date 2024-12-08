@@ -67,6 +67,8 @@ function setPredefTable($dbConn)
         ";
     }
  }
+
+
  function getCatForAdd($dbConn)
   {
     $sqlQuery = "
@@ -89,24 +91,42 @@ function setPredefTable($dbConn)
     }
  }
 
- function setFoodInventoryTable($dbConn): array
+ function setFoodInventoryTable($dbConn): string
  {
-    $sql = "
-        SELECT 
-            GROUP_inventory_items.item_name,
-            GROUP_inventory_items.expiry_date,
-            GROUP_categories.category_name,
-            GROUP_storage_types.storage_type_name
-        FROM 
-            GROUP_inventory_items
-        INNER JOIN 
-            GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_name
-        INNER JOIN 
-            GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_name
-				WHERE GROUP_inventory_items.user = {$userID}
-						"; // need to find where the session data is stored
+    $inventoryTable = "";
+  
+    $sql = "SELECT GROUP_inventory_items.item_name, GROUP_inventory_items.expiry_date, GROUP_categories.category_name, GROUP_storage_types.storage_type_name, DATE(GROUP_inventory_items.date_added) as date_added FROM    GROUP_inventory_items INNER JOIN GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_id INNER JOIN GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_id;";
+
     $stmt = $dbConn->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $row) {
+        $inventoryTable .= "<tr>
+            <td>{$row['item_name']}</td>
+            <td>{$row['expiry_date']}</td> 
+            <td>{$row['storage_type_name']}</td>
+            <td>{$row['category_name']}</td>
+            <td>{$row['date_added']}</td>
+            </tr> \n";
+    }
+    return $inventoryTable;   
+}
+
+function getStorageForSort($dbConn)
+{
+    $sql = "SELECT * FROM GROUP_storage_types;";
+    $queryResult = $dbConn->query($sql);
+    while ($rowObj = $queryResult->fetchObject())
+    {
+        echo "
+        <div class='dropdown-item'>
+            <label class='checkbox'>
+                {$rowObj->storage_type_name}
+                <input type='checkbox' id='{$rowObj->storage_type_id}' value='{$rowObj->storage_type_name}'/>
+            </label>
+        </div>
+        ";
+    }
+
 }
 ?>
