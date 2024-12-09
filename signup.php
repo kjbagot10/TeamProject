@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-require 'databaseconnection.php';
+require 'connecting_databaseforinventory.php';
 
 $error = ""; // Initialize the error message variable
 
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $password_hash = password_hash($password_hash, PASSWORD_DEFAULT);
 
         // Prepare SQL query to insert user data
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
 
         if ($stmt->execute()) {
             echo "<p>Registration successful! <a href='login.html'>Login here</a>.</p>";
