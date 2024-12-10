@@ -29,7 +29,7 @@ $dbConn = getConnection();
           <div class="control">
             <select id="foodType" name="foodType" required>
             <option value="">Select Food Type</option>
-            <? getCatForAdd($dbConn); ?>
+            <? echo getCatForAdd($dbConn); ?>
             </select>
           </div>
         </div>

@@ -78,7 +78,7 @@ function setPredefTable($dbConn)
     ";
     $queryResult = $dbConn->query($sqlQuery);
     while ($rowObj = $queryResult->fetchObject()) {
-        echo "<option value='{$rowObj->category_name}'>" . htmlspecialchars($rowObj->category_name, ENT_QUOTES, 'UTF-8') . "</option>";
+        echo "<option value='{$rowObj->category_id}'>" . htmlspecialchars($rowObj->category_name, ENT_QUOTES, 'UTF-8') . "</option>";
     }
 }
 
