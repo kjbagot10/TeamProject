@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+</head>
+<body>
+    <form action="processing.php" method="POST">
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" name="item_name" required><br><br>
+
+        <label for="category_name">Category type:</label>
+        <select id="category_name" name="category_name">
+            <option value="Dairy">Dairy</option>
+            <option value="Produce">Produce</option>
+            <option value="Meats">Meats</option>
+            <option value="Grains">Grains</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Frozen food">Frozen food</option>
+            <option value="Condiments">Condiments</option>
+            <option value="Spices">Spices</option>
+            <option value="Canned goods">Canned goods</option>
+        </select><br><br>
+
+        <label for="expiry_date">Expiry Date:</label>
+        <input type="datetime-local" id="expiry_date" name="expiry_date" required><br><br>
+
+        <label for="storage_type_name">Storage Type:</label>
+        <select id="storage_type_name" name="storage_type_name" required>
+            <option value="Freezer">Freezer</option>
+            <option value="Fridge">Fridge</option>
+            <option value="Pantry">Pantry</option>
+        </select><br><br>
+
+        <input type="submit" value="Add Item">
+    </form>
+</body>
+</html>
