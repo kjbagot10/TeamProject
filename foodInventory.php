@@ -138,7 +138,7 @@ $dbConn = getConnection();
         </tr>
       </thead>
       <tbody>
-        <?php echo setFoodInventoryTable($dbConn) ?>
+        <?php echo setFoodInventoryTable($dbConn, getUserNameByID($dbConn)) ?>
       </tbody>
     </table>
 
