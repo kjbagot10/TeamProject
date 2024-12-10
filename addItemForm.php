@@ -1,3 +1,8 @@
+<?php
+require "DatabaseFunctions.php";
+$dbConn = getConnection();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

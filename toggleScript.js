@@ -77,10 +77,16 @@ function toggleDrop(dropdownId) {
 
 const ascAlphaChk = document.getElementById("ascend-alpha");
 const descAlphChk = document.getElementById("descend-alpha");
+const nearestFurthest = document.getElementById("nearest-date");
+const furthestNearest = document.getElementById("furthest-date");
+const recentlyAdded = document.getElementById("recently-added");
 
 ascAlphaChk.addEventListener("click", function () {
   if (ascAlphaChk.checked) {
     descAlphChk.checked = false; // Uncheck Z-A
+    furthestNearest.checked = false; // uncheck furthest to nearest
+    nearestFurthest.checked = false; // uncheck nearest to furthest
+    recentlyAdded.checked = false;
     sortTableAlpha("asc"); // Apply A-Z sort
   } else {
     console.log("Sorting cleared."); // Optional: handle unchecking A-Z
@@ -90,12 +96,50 @@ ascAlphaChk.addEventListener("click", function () {
 descAlphChk.addEventListener("click", function () {
   if (descAlphChk.checked) {
     ascAlphaChk.checked = false; // Uncheck A-Z
+    furthestNearest.checked = false; // uncheck furthest to nearest
+    nearestFurthest.checked = false; // uncheck nearest to furthest
+    recentlyAdded.checked = false;
     sortTableAlpha("desc"); // Apply Z-A sort
   } else {
     console.log("Sorting cleared."); // Optional: handle unchecking Z-A
   }
 });
 
+nearestFurthest.addEventListener("click", function () {
+  if (nearestFurthest.checked) {
+    furthestNearest.checked = false; // Uncheck furthest to nearest
+    ascAlphaChk.checked = false; // Uncheck A-Z
+    descAlphChk.checked = false; // Uncheck Z-A
+    recentlyAdded.checked = false;
+    sortTableByDate(true); // Apply nearest to furthest sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking nearest to furthest
+  }
+});
+
+furthestNearest.addEventListener("click", function () {
+  if (furthestNearest.checked) {
+    nearestFurthest.checked = false; // Uncheck nearest to furthest
+    ascAlphaChk.checked = false; // Uncheck A-Z
+    descAlphChk.checked = false; // Uncheck Z-A
+    recentlyAdded.checked = false;
+    sortTableByDate(false); // Apply furthest to nearest sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking furthest to nearest
+  }
+});
+
+recentlyAdded.addEventListener("click", function () {
+  if (recentlyAdded.checked) {
+    nearestFurthest.checked = false; // Uncheck nearest to furthest
+    ascAlphaChk.checked = false; // Uncheck A-Z
+    descAlphChk.checked = false; // Uncheck Z-A
+    furthestNearest.checked = false;
+    sortTableByDate(false, col=4); // Apply furthest to nearest sort
+  } else {
+    console.log("Sorting cleared."); // Optional: handle unchecking furthest to nearest
+  }
+});
 
 
 function sortTableAlpha(asc) 
@@ -220,33 +264,13 @@ function foodTypeSort() {
   }
 }
 
-
-const nfCheckbox = document.getElementById("nearest-date");
-const fnCheckbox = document.getElementById("furthest-date");
-
-nfCheckbox.addEventListener("click", function () {
-  if (nfCheckbox.checked)
-  {
-    fnCheckbox.checked = false;
-    sortTableByDate(true);
-  }
-})
-
-fnCheckbox.addEventListener("click", function () {
-  if (fnCheckbox.checked)
-  {
-    nfCheckbox.checked = false;
-    sortTableByDate(false);
-  }
-})
-
-function sortTableByDate(isAscending) {
+function sortTableByDate(isAscending, col=1) {
   const table = document.getElementById("inventoryTable");
   const rows = Array.from(table.getElementsByTagName("tr")).slice(1); // Skip the header row
 
   rows.sort((rowA, rowB) => {
-    const dateA = new Date(rowA.getElementsByTagName("td")[1].innerText.trim());
-    const dateB = new Date(rowB.getElementsByTagName("td")[1].innerText.trim());
+    const dateA = new Date(rowA.getElementsByTagName("td")[col].innerText.trim());
+    const dateB = new Date(rowB.getElementsByTagName("td")[col].innerText.trim());
 
     // Toggle sorting order
     if (isAscending) {

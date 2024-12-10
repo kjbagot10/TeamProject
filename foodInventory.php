@@ -76,6 +76,12 @@ $dbConn = getConnection();
               <input type="checkbox" id="furthest-date"/>
             </label>
           </div>
+          <div class="dropdown-item">
+            <label class="checkbox">
+              Most recently added
+              <input type="checkbox" id="recently-added">
+            </label>
+          </div>
         </div>
       </div>
     </div>
@@ -116,24 +122,7 @@ $dbConn = getConnection();
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Freezer
-              <input type="checkbox" id="freezer-check" onclick="foodTypeSort()" value="Freezer"/>
-            </label>
-          </div>
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Fridge
-              <input type="checkbox" id="fridge-check" onclick="foodTypeSort()" value="Fridge"/>
-            </label>
-          </div>
-          <div class="dropdown-item">
-            <label class="checkbox">
-              Pantry
-              <input type="checkbox" id="pantry-check" onclick="foodTypeSort()" value="Pantry"/>
-            </label>
-          </div>
+          <?php getStorageForSort($dbConn) ?>
         </div>
       </div>
     </div>
@@ -142,9 +131,10 @@ $dbConn = getConnection();
       <thead>
         <tr>
           <th><abbr title="Item Name">Name</abbr></th>
-          <th><abbr title="Expiry Date">Exp Date</abbr></th>
-          <th><abbr title="Storage Method">Strg Meth</abbr></th>
-          <th><abbr title="Type">Typ</abbr></th>
+          <th><abbr title="Expiry Date">Expiry Date</abbr></th>
+          <th><abbr title="Storage Method">Storage Method</abbr></th>
+          <th><abbr title="Type">Item Type</abbr></th>
+          <th><abbr title="Date added">Date Added</abbr></th>
         </tr>
       </thead>
       <tbody>
