@@ -31,17 +31,17 @@
           <button type="button" class="clear-btn">✕</button>
         </div>
         <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="********" required>
+          <label for="newPassword">Password</label>
+          <input type="password" id="newPassword" name="newPassword" placeholder="********" required>
           <button type="button" class="clear-btn">✕</button>
         </div>
         <div class="input-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" name="confirm-password" placeholder="********" required>
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="********" required>
           <button type="button" class="clear-btn">✕</button>
         </div>
         <?php if (isset($input) && isset($errors)) {
-                        dispayLoginError($input, $errors);
+                        dispayRegisterError($input, $errors);
                     } ?>
         <button type="submit" class="login-btn">Create Account</button>
       </form>

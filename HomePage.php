@@ -29,7 +29,17 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
     </header>
 
     <main>
-      <h1>Hey User,</h1>
+      <?php
+      require_once "DatabaseFunctions.php";
+
+      if ($isLoggedIn) {
+        $userID = $_SESSION['userID'];
+        $userName = getUserNameByID($userID);
+        echo "<p>Welcome back, User $userName!</p>";
+      } else {
+        echo "<h1>Welcome, Guest!</h1>";
+      }
+      ?>
       <div class="cards">
         <div class="card">
           <p>Food Saved</p>

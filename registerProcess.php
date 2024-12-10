@@ -8,8 +8,8 @@ try {
     [$input, $errors] = validateInput();
     $name = $input["name"];
     $email = $input["email"];
-    $password = $input["newPassword"];
-    $confirmPassword = $input["confirm-password"];
+    $newPassword = $input["newPassword"];
+    $confirmPassword = $input["confirmPassword"];
     // Ensure there are no validation errors
     if (empty($errors)) {
         // Check if email already exists in the database
@@ -23,7 +23,7 @@ try {
         } else {
             // Check if passwords match
             if ($newPassword !== $confirmPassword) {
-                $errors[] = "Passwords do not match.";
+                $errors[] = "Passwords do not match. $newPassword , $confirmPassword";
             } else {
                 // Hash the password securely
                 $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);

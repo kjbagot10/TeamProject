@@ -19,7 +19,8 @@ function validateInput()
 
     // Retrieve input, trim, remove special charaters and store in $input array
     foreach ($_POST as $key => $value) {
-        $input[$key] = getdata($key);
+        $input[$key] = getData($key);
+        echo $key . ": " . $input[$key] . "<br>";
     }
 
     //Check is field is empty
@@ -35,6 +36,7 @@ function validateInput()
     if (isset($input["newPassword"])) {
         $errors[] = validatePassword($input["newPassword"]);
     }
+
 
     // Remove null errors and return an array of $input and $errors
     $errors = array_values(array_filter($errors));
@@ -104,6 +106,27 @@ function dispayLoginError($input, $data)
         $input["password"] .
         '" ;
     </script>';
+
+
+    foreach ($data as $error) {
+        echo '<span style="color: red;">' .
+            $error .
+            '</span>
+        <br>';
+    }
+}
+
+function dispayRegisterError($input, $data)
+{
+    echo '<script> 
+        registerForm.email.value ="' .
+        $input["email"] .
+        '" ;
+        registerForm.newPassword.value ="' .
+        $input["newPassword"] .
+        '" ;
+    </script>';
+
 
     foreach ($data as $error) {
         echo '<span style="color: red;">' .

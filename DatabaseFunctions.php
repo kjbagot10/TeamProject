@@ -15,6 +15,15 @@ function getConnection()
     }
 }
 
+function getUserNameByID($userID)
+{
+    $dbConn = getConnection();
+    $sqlQuery = "SELECT username FROM GROUP_users WHERE user_id = :userID";
+    $stmt = $dbConn->prepare($sqlQuery);
+    $stmt->execute(["userID" => $userID]);
+    $userName = $stmt->fetchColumn();
+    return $userName;
+}
 function setFoodInventoryTable($dbConn)
 {
     $predefinedTable = "";
