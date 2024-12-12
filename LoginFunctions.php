@@ -12,6 +12,10 @@ function checkLogin()
 {
     return isset($_SESSION["logged-in"]);
 }
+function checkUserId()
+{
+    return isset($_SESSION["userID"]);
+}
 function validateInput()
 {
     $input = []; // Create array for form input

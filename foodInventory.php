@@ -1,12 +1,12 @@
 <?php
 require_once "DatabaseFunctions.php";
-// require_once "LoginFunctions.php";
-// startSession();
-// //Checks if the user is logged in
-// $isLoggedIn = checkLogin();
-// echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
-// $userID = $_SESSION['userID'];
-// $userName = getUserNameByID($userID);
+require_once "LoginFunctions.php";
+startSession();
+//Checks if the user is logged in
+$isLoggedIn = checkLogin();
+echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
+$userID = checkUserId();
+$userName = getUserNameByID($userID);
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +107,6 @@ require_once "DatabaseFunctions.php";
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
-          <?php echo getCatForSort($dbConn) ?>
         </div>
       </div>
     </div>
@@ -128,7 +127,6 @@ require_once "DatabaseFunctions.php";
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
-          <?php getStorageForSort($dbConn) ?>
         </div>
       </div>
     </div>
