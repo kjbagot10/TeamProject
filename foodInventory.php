@@ -1,12 +1,12 @@
 <?php
 require_once "DatabaseFunctions.php";
-require_once "LoginFunctions.php";
-startSession();
-//Checks if the user is logged in
-$isLoggedIn = checkLogin();
-echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
-
-$userName = getUserNameByID($userID);
+// require_once "LoginFunctions.php";
+// startSession();
+// //Checks if the user is logged in
+// $isLoggedIn = checkLogin();
+// echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
+// $userID = $_SESSION['userID'];
+// $userName = getUserNameByID($userID);
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +144,7 @@ $userName = getUserNameByID($userID);
         </tr>
       </thead>
       <tbody>
-        <?php echo setFoodInventoryTable($dbConn, $userID) ?>
+        <?php echo setFoodInventoryTable($dbConn, $userID=7) ?>
       </tbody>
     </table>
 
