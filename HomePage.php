@@ -15,13 +15,13 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <>
     <header>
       <div class="logo">Logo</div>
       <nav>
         <a href="#">Home</a>
         <a href="loginForm.php">LogIn</a>
-        <a href="#">Food Inventory</a>
+        <a href="foodInventory.php">Food Inventory</a>
         <a href="#">Waste Management</a>
         <a href="#">About Us</a>
       </nav>
@@ -53,5 +53,6 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
         </div>
       </div>
     </main>
+    <script src="toggleScript.js"></script>
   </body>
 </html>

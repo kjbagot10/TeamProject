@@ -1,6 +1,12 @@
 <?php
-require "DatabaseFunctions.php";
-$dbConn = getConnection();
+require_once "DatabaseFunctions.php";
+require_once "LoginFunctions.php";
+startSession();
+//Checks if the user is logged in
+$isLoggedIn = checkLogin();
+echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
+
+$userName = getUserNameByID($userID);
 ?>
 
 <!DOCTYPE html>
@@ -138,7 +144,7 @@ $dbConn = getConnection();
         </tr>
       </thead>
       <tbody>
-        <?php echo setFoodInventoryTable($dbConn, getUserNameByID($dbConn)) ?>
+        <?php echo setFoodInventoryTable($dbConn, $userID) ?>
       </tbody>
     </table>
 

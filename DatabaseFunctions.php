@@ -86,10 +86,14 @@ function setPredefTable($dbConn)
  {
     $inventoryTable = "";
   
-    $sql = "SELECT GROUP_inventory_items.item_name, GROUP_inventory_items.expiry_date, GROUP_categories.category_name, GROUP_storage_types.storage_type_name, DATE(GROUP_inventory_items.date_added) as date_added FROM    GROUP_inventory_items INNER JOIN GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_id INNER JOIN GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_id WHERE GROUP_inventory_items.user_id = {$userID};";
+    $sql = "SELECT GROUP_inventory_items.item_name, GROUP_inventory_items.expiry_date, GROUP_categories.category_name, GROUP_storage_types.storage_type_name, DATE(GROUP_inventory_items.date_added) as date_added 
+    FROM  GROUP_inventory_items 
+    INNER JOIN GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_id
+     INNER JOIN GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_id 
+     WHERE GROUP_inventory_items.user_id = :userID;";
 
     $stmt = $dbConn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute(["userID" => $userID]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($results as $row) {
         $inventoryTable .= "<tr>
