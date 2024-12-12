@@ -1,5 +1,6 @@
 <?php
 require_once "DatabaseFunctions.php";
+$dbConn = getConnection();
 require_once "LoginFunctions.php";
 startSession();
 //Checks if the user is logged in
@@ -107,6 +108,7 @@ $userName = getUserNameByID($userID);
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
+          <?php getCatForSort($dbConn) ?>
         </div>
       </div>
     </div>
@@ -127,6 +129,7 @@ $userName = getUserNameByID($userID);
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
+          <?php getStorageForSort($dbConn)?>
         </div>
       </div>
     </div>
@@ -142,7 +145,8 @@ $userName = getUserNameByID($userID);
         </tr>
       </thead>
       <tbody>
-        <?php echo setFoodInventoryTable($dbConn, $userID=7) ?>
+        <!-- need to change this -->
+        <?php echo setFoodInventoryTable($dbConn, $userID=7) ?> 
       </tbody>
     </table>
 

@@ -61,7 +61,7 @@ function setPredefTable($dbConn)
         <div class='dropdown-item'>
             <label class='checkbox'>
                 {$rowObj->category_name}
-                <input type='checkbox' id='{$rowObj->category_id}' onclick='foodTypeSort()' value='{$rowObj->category_name}'/>
+                <input type='checkbox' id='{$rowObj->category_id}' value='{$rowObj->category_name}' onclick='foodTypeSort()'/>
             </label>
         </div>
         ";
@@ -117,7 +117,7 @@ function getStorageForSort($dbConn)
         <div class='dropdown-item'>
             <label class='checkbox'>
                 {$rowObj->storage_type_name}
-                <input type='checkbox' id='{$rowObj->storage_type_id}' value='{$rowObj->storage_type_name}'/>
+                <input type='checkbox' id='{$rowObj->storage_type_id}' value='{$rowObj->storage_type_name}' onclick='foodTypeSort()'/>
             </label>
         </div>
         ";
