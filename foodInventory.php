@@ -143,10 +143,25 @@ $userName = getUserNameByID($userID);
           <th><abbr title="Type">Item Type</abbr></th>
           <th><abbr title="Date added">Date Added</abbr></th>
         </tr>
+        
+
       </thead>
       <tbody>
         <!-- need to change this -->
-        <?php echo setFoodInventoryTable($dbConn, $userID=7) ?> 
+        <?php 
+        if ($isLoggedIn)
+        {
+          echo setFoodInventoryTable($dbConn, $userID);
+        }
+        else
+        {
+          echo '
+          <p>Please sign in or create an account.</p>
+          <p><a href="loginForm.php">Log in</a></p>
+          <p><a href="registerForm.php">Register Form</a></p>
+          ';
+        }
+        ?> 
       </tbody>
     </table>
 
