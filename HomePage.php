@@ -1,9 +1,13 @@
 <?php
-require_once "DatabaseFunctions.php";
+require "DatabaseFunctions.php";
 require_once "LoginFunctions.php";
 startSession();
 //Checks if the user is logged in
 $isLoggedIn = checkLogin();
+if ($isLoggedIn):
+  $userID = $_SESSION["userID"];
+  $userName = getUserNameByID($userID);
+endif;
 echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
 ?>
 
@@ -15,17 +19,18 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <>
     <header>
       <div class="logo">Logo</div>
       <nav>
         <a href="#">Home</a>
         <a href="#">Something</a>
         <a href="foodInventory.php">Food Inventory</a>
-        <a href="#">Waste Management</a>
+        <a href="wasteManagment.php">Waste Management</a>
         <a href="#">About Us</a>
       </nav>
-      <div class="profile-icon" onclick="toggleMenu()">G</div>
+      <divdiv class="profile-icon" onclick="toggleMenu()">
+        <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
+      </div>
       <div class="dropdown-menu" id="menuContent">
         <?php if ($isLoggedIn): ?>
           <a href="logOut.php">Logout</a>
@@ -33,26 +38,15 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
           <a href="loginForm.php">Login</a>
         <?php endif; ?>
       </div>
-        <script>
-      function toggleMenu() {
-        var menuContent = document.getElementById("menuContent");
-        menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
-      }
-        </script>
+      <script>
+        function toggleMenu() {
+          var menuContent = document.getElementById("menuContent");
+          menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+        }
+      </script>
     </header>
 
     <main>
-      <?php
-      require_once "DatabaseFunctions.php";
-
-      if ($isLoggedIn) {
-        $userID = $_SESSION['userID'];
-        $userName = getUserNameByID($userID);
-        echo "<p>Welcome back, User $userName!</p>";
-      } else {
-        echo "<h1>Welcome, Guest!</h1>";
-      }
-      ?>
       <div class="cards">
         <div class="card">
           <p>Food Saved</p>
