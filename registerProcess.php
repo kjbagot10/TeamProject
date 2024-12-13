@@ -23,7 +23,7 @@ try {
         } else {
             // Check if passwords match
             if ($newPassword !== $confirmPassword) {
-                $errors[] = "Passwords do not match. $newPassword , $confirmPassword";
+                $errors[] = "Passwords do not match.";
             } else {
                 // Hash the password securely
                 $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
