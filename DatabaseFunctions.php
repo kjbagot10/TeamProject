@@ -241,7 +241,7 @@ function viewInventoryTable($dbConn, $userID)
         </div>
     </div>
 
-    <table id="inventoryTable" class="table">
+    <table id="inventoryTable" class="table is-striped is-bordered is-narrow is-inline-block">
         <thead>
             <tr>
                 <th><abbr title="Item Name">Name</abbr></th>
