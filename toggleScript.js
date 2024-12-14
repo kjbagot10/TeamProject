@@ -1,28 +1,26 @@
 // --- all the navHTML is in the navHTML.html file
 const navhtml = 
 `
-     <!-- navbar brand -->
+  <div class="container">
+    <!-- Left Side: Logo -->
     <div class="navbar-brand">
-      <a href="homepage.html" class="navbar-item">LOGO</a>
-      <!-- nav burger -->
-      <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
+      <a class="navbar-item">LOGO</a>
     </div>
-    <!-- navbar menu -->
-    <div class="navbar-menu" id="navMenu">
-      <div class="navbar-start">
-        <a href="HomePage.php" class="navbar-item">Home</a>
-        <a href="foodInventory.php" class="navbar-item">Food Inventory</a>
-        <a href="#" class="navbar-item">About us</a>
-      </div>
-      <div class="navbar-end">
-        <div class="navbar-item">Icon</div>
-      </div>
+
+    <!-- Center: Links -->
+    <div class="navbar-menu is-flex is-justify-content-center">
+      <a href="HomePage.php" class="navbar-item">Home</a>
+      <a href="#" class="navbar-item">Information</a>
+      <a href="foodInventory.php" class="navbar-item">Food Inventory</a>
+      <a href="wasteManagment.php" class="navbar-item">Waste Management</a>
+      <a href="#" class="navbar-item">About Us</a>
     </div>
+
+    <!-- Right Side: Icon -->
+    <div class="navbar-end">
+      <a class="navbar-item">Icon</a>
+    </div>
+  </div>
 
   
 `;
