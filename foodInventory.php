@@ -12,7 +12,9 @@ $userName = getUserNameByID(userID: $userID);
 
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
+  
     <meta charset="UTF-8" />
     <!-- Sets the character encoding for the document -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,11 +29,29 @@ $userName = getUserNameByID(userID: $userID);
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- Font Awesome for icons -->
+    <style>
+      :root {
+        --bulma-primary-h: 0deg;
+        --bulma-primary-s: 0%;
+        --bulma-primary-l: 83%;
+        --bulma-link-h: 260deg;
+        --bulma-link-s: 60%;
+        --bulma-link-l: 65%;
+      }
 
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #d3d3d3;
+        color: #000;
+      }
+      
+
+    </style>
     <title>Food Inventory</title>
     <!-- Title of the webpage -->
   </head>
-    <nav class="navbar" role="navigation" aria-label="main navigation"></nav>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation"></nav>
     <div class="container has-text-centered">
        <!-- Title for the inventory -->
       <div class="title is-4">My Food Inventory</div>

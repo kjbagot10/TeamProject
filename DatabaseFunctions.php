@@ -154,7 +154,7 @@ function viewInventoryTable($dbConn, $userID)
     <div class="dropdown" id="sortAZ">
         <div class="dropdown-trigger" onclick="toggleDrop(\'#sortAZ\')">
             <button
-                class="button"
+                class="button is-link"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
             >
@@ -203,7 +203,7 @@ function viewInventoryTable($dbConn, $userID)
     <div class="dropdown" id="typeChkboxes">
         <div class="dropdown-trigger" onclick="toggleDrop(\'#typeChkboxes\')">
             <button
-                class="button"
+                class="button is-link"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
             >
@@ -224,7 +224,7 @@ function viewInventoryTable($dbConn, $userID)
     <div class="dropdown" id="storageChkboxes">
         <div class="dropdown-trigger" onclick="toggleDrop(\'#storageChkboxes\')">
             <button
-                class="button"
+                class="button is-link"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
             >
