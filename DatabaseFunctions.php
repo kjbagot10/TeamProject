@@ -255,7 +255,8 @@ function viewInventoryTable($dbConn, $userID)
     $htmlString .= setFoodInventoryTable($dbConn, $userID); // Add table rows
     $htmlString .= '
         </tbody>
-    </table>';
+    </table>
+    ';
 
     echo $htmlString;
 }
