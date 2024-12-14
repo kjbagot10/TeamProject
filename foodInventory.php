@@ -31,29 +31,30 @@ $userName = getUserNameByID(userID: $userID);
     <title>Food Inventory</title>
     <!-- Title of the webpage -->
   </head>
-  <body>
     <nav class="navbar" role="navigation" aria-label="main navigation"></nav>
-    <div class="title is-4">My Food Inventory</div>
-    <!-- Title for the inventory -->
+    <div class="container has-text-centered">
+       <!-- Title for the inventory -->
+      <div class="title is-4">My Food Inventory</div>
+        <div class="container has-text-centered">
+            <!-- need to change this -->
+            <?php 
+            if ($isLoggedIn)
+            {
+              $userID = $_SESSION["userID"];
+              echo viewInventoryTable($dbConn, $userID);
+            }
+            else
+            {
+              echo '
+              <p>Please sign in or create an account.</p>
+              <p><a href="loginForm.php">Log in</a></p>
+              <p><a href="registerForm.php">Register Form</a></p>
+              ';
+            }
+            ?> 
+        </div>
+    </div>
 
-  
-        <!-- need to change this -->
-        <?php 
-        if ($isLoggedIn)
-        {
-          $userID = $_SESSION["userID"];
-          echo viewInventoryTable($dbConn, $userID);
-        }
-        else
-        {
-          echo '
-          <p>Please sign in or create an account.</p>
-          <p><a href="loginForm.php">Log in</a></p>
-          <p><a href="registerForm.php">Register Form</a></p>
-          ';
-        }
-        ?> 
-    
     <script src="toggleScript.js"></script>
   </body>
 </html>
