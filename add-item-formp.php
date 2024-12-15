@@ -27,10 +27,12 @@ $dbConn = getConnection();
         <div class="field">
           <label class="label" for="foodType">Food Type</label>
           <div class="control">
-            <select id="foodType" name="foodType" required>
-            <option value="">Select Food Type</option>
-            <? echo getCatForAdd($dbConn); ?>
-            </select>
+            <div class="select">
+              <select id="foodType" name="foodType" required>
+              <option value="">Select Food Type</option>
+                <?php echo getCatForAdd($dbConn); ?>
+              </select>
+            </div>
           </div>
         </div>
 
