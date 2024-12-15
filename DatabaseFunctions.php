@@ -71,17 +71,19 @@ function setPredefTable($dbConn)
  }
 
 
- function getCatForAdd($dbConn) {
+ function getCatForAdd($dbConn): string  {
     $sqlQuery = "
     SELECT 
         category_id, category_name
     FROM 
         GROUP_categories;
     ";
+    $stringToShow = "";
     $queryResult = $dbConn->query($sqlQuery);
     while ($rowObj = $queryResult->fetchObject()) {
-        echo "<option value='{$rowObj->category_id}'>" . htmlspecialchars($rowObj->category_name, ENT_QUOTES, 'UTF-8') . "</option>";
+        $stringToShow .= "<option value='{$rowObj->category_id}'>{$rowObj->category_name}</option>";
     }
+    return $stringToShow;
 }
 
  function setFoodInventoryTable($dbConn, $userID): string
@@ -241,7 +243,7 @@ function viewInventoryTable($dbConn, $userID)
         </div>
     </div>
 
-    <table id="inventoryTable" class="table is-striped is-bordered is-narrow is-inline-block">
+    <table id="inventoryTable" class="table is-striped is-narrow is-fullwidth">
         <thead>
             <tr>
                 <th><abbr title="Item Name">Name</abbr></th>

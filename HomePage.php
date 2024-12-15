@@ -19,6 +19,7 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+  <body>
     <header>
       <div class="logo">Logo</div>
       <nav>

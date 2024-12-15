@@ -28,8 +28,9 @@ $userName = getUserNameByID(userID: $userID);
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="stylesheet" href="foodInventorystyle.css">
     <!-- Font Awesome for icons -->
-    <style>
+    <!-- <style>
       :root {
         --bulma-primary-h: 0deg;
         --bulma-primary-s: 0%;
@@ -54,12 +55,37 @@ $userName = getUserNameByID(userID: $userID);
         justify-content: center;
         align-items: center;
       }
-    </style>
+    </style> -->
     <title>Food Inventory</title>
     <!-- Title of the webpage -->
   </head>
   <body>
-    <nav class="navbar is-primary is-justify-content-space-between is-align-items-center" role="navigation" aria-label="main navigation"></nav>
+  <header>
+      <div class="logo">Logo</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Something</a>
+        <a href="foodInventory.php">Food Inventory</a>
+        <a href="wasteManagment.php">Waste Management</a>
+        <a href="#">About Us</a>
+      </nav>
+      <divdiv class="profile-icon" onclick="toggleMenu()">
+        <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
+      </div>
+      <div class="dropdown-menu" id="menuContent">
+        <?php if ($isLoggedIn): ?>
+          <a href="logOut.php">Logout</a>
+        <?php else: ?>
+          <a href="loginForm.php">Login</a>
+        <?php endif; ?>
+      </div>
+      <script>
+        function toggleMenu() {
+          var menuContent = document.getElementById("menuContent");
+          menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+        }
+      </script>
+    </header>
     <div class="container has-text-centered">
        <!-- Title for the inventory -->
       <div class="title is-4">My Food Inventory</div>
