@@ -44,14 +44,22 @@ $userName = getUserNameByID(userID: $userID);
         background-color: #d3d3d3;
         color: #000;
       }
+      .navbar {
+        background-color: #f5f5f5;
+      }
       
-
+      .navbar-start {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
     <title>Food Inventory</title>
     <!-- Title of the webpage -->
   </head>
   <body>
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation"></nav>
+    <nav class="navbar is-primary is-justify-content-space-between is-align-items-center" role="navigation" aria-label="main navigation"></nav>
     <div class="container has-text-centered">
        <!-- Title for the inventory -->
       <div class="title is-4">My Food Inventory</div>
@@ -62,6 +70,7 @@ $userName = getUserNameByID(userID: $userID);
             {
               $userID = $_SESSION["userID"];
               echo viewInventoryTable($dbConn, $userID);
+
             }
             else
             {
@@ -73,8 +82,9 @@ $userName = getUserNameByID(userID: $userID);
             }
             ?> 
         </div>
-    </div>
 
+    </div>
+    
     <script src="toggleScript.js"></script>
   </body>
 </html>
