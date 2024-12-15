@@ -5,9 +5,11 @@ require_once "LoginFunctions.php";
 startSession();
 //Checks if the user is logged in
 $isLoggedIn = checkLogin();
+if ($isLoggedIn):
+  $userID = $_SESSION["userID"];
+  $userName = getUserNameByID($userID);
+endif;
 echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
-$userID = $_SESSION["userID"];
-$userName = getUserNameByID(userID: $userID);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +38,7 @@ $userName = getUserNameByID(userID: $userID);
   <header>
       <div class="logo">Logo</div>
       <nav>
-        <a href="#">Home</a>
+        <a href="HomePage.php">Home</a>
         <a href="#">Something</a>
         <a href="foodInventory.php">Food Inventory</a>
         <a href="wasteManagment.php">Waste Management</a>
@@ -69,6 +71,7 @@ $userName = getUserNameByID(userID: $userID);
             {
               $userID = $_SESSION["userID"];
               echo viewInventoryTable($dbConn, $userID);
+              echo '<a href="add-item-formp.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->';
 
             }
             else
@@ -81,7 +84,6 @@ $userName = getUserNameByID(userID: $userID);
             }
             ?> 
         </div>
-        <a href="add-item-formp.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->
 
     </div>
     

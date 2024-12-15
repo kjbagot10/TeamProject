@@ -11,11 +11,11 @@
   <header>
     <div class="logo">Logo</div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Information</a>
-      <a href="#">Food Inventory</a>
-      <a href="#">Waste Management</a>
-      <a href="#">About Us</a>
+        <a href="HomePage.php">Home</a>
+        <a href="#">Something</a>
+        <a href="foodInventory.php">Food Inventory</a>
+        <a href="wasteManagment.php">Waste Management</a>
+        <a href="#">About Us</a>
     </nav>
     <div class="profile-icon">⚙️</div>
   </header>

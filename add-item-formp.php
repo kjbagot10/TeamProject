@@ -26,11 +26,11 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
   <header>
     <div class="logo">Logo</div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Something</a>
-      <a href="foodInventory.php">Food Inventory</a>
-      <a href="wasteManagment.php">Waste Management</a>
-      <a href="#">About Us</a>
+        <a href="HomePage.php">Home</a>
+        <a href="#">Something</a>
+        <a href="foodInventory.php">Food Inventory</a>
+        <a href="wasteManagment.php">Waste Management</a>
+        <a href="#">About Us</a>
     </nav>
     <divdiv class="profile-icon" onclick="toggleMenu()">
       <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
