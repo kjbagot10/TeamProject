@@ -10,6 +10,63 @@ $userID = $_SESSION["userID"];
 $userName = getUserNameByID(userID: $userID);
 
 
+$htmlToDisplay = "
+<!DOCTYPE html>
+<html lang=\"en\">
+  
+  <head>
+  
+    <meta charset=\"UTF-8\" />
+    <!-- Sets the character encoding for the document -->
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+    <!-- Ensures responsiveness on mobile devices -->
+    <link
+      rel=\"stylesheet\"
+      href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css\"
+    />
+    <!-- Bulma CSS framework for styling -->
+    <link
+      rel=\"stylesheet\"
+      href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"
+    />
+    <link rel=\"stylesheet\" href=\"foodInventorystyle.css\">
+    
+    <title>Food Inventory</title>
+    <!-- Title of the webpage -->
+  </head>
+  <body>
+  <header>
+      <div class=\"logo\">Logo</div>
+      <nav>
+        <a href=\"#\">Home</a>
+        <a href=\"#\">Something</a>
+        <a href=\"foodInventory.php\">Food Inventory</a>
+        <a href=\"wasteManagment.php\">Waste Management</a>
+        <a href=\"#\">About Us</a>
+      </nav>
+      <div class=\"profile-icon\" onclick=\"toggleMenu()\">
+        <?php echo \$isLoggedIn ? strtoupper(substr(\$userName, 0, 1)) : 'G'; ?>
+      </div>
+      <div class=\"dropdown-menu\" id=\"menuContent\">
+        <?php if (\$isLoggedIn): ?>
+          <a href=\"logOut.php\">Logout</a>
+        <?php else: ?>
+          <a href=\"loginForm.php\">Login</a>
+        <?php endif; ?>
+      </div>
+      <script>
+        function toggleMenu() {
+          var menuContent = document.getElementById(\"menuContent\");
+          menuContent.style.display = menuContent.style.display === \"block\" ? \"none\" : \"block\";
+        }
+      </script>
+    </header>
+
+";
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve form inputs
   $item_name = htmlspecialchars($_POST['item']);
@@ -36,7 +93,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   // Execute the statement
   if ($stmt->execute()) {
-      echo "<p>Your food has been added into your inventory successfully!<p>";
+    echo $htmlToDisplay;
+    echo "
+    <p>Item successfully added</p>
+    <a href='foodInventory.php'>Go to food inventory</a>
+    ";
+    
   } else {
       echo "Error: " . $stmt->errorInfo()[2];
   }
@@ -45,5 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Handle cases where the script is accessed directly
   echo "<h3>Error: Please submit the form correctly.</h3>";
 }
+
+
+
 
 ?>
