@@ -19,6 +19,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 //Redirect back to homepage
 echo "<script> window.addEventListener('load', function () {
-    window.location.replace('HomePage.php');});
+    window.location.replace('loginForm.php');});
     </script>";
 ?>
