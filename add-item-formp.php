@@ -1,7 +1,12 @@
 <?php
 require "DatabaseFunctions.php";
 $dbConn = getConnection();
-
+require_once "LoginFunctions.php";
+startSession();
+//Checks if the user is logged in
+$isLoggedIn = checkLogin();
+echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
+$userID = $_SESSION["userID"];
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +26,7 @@ $dbConn = getConnection();
         <div class="field">
           <label class="label" for="name">Name</label>
           <div class="control">
-            <input class="input" id="name" name="item_name" type="text" placeholder="Food Name" required>
+            <input class="input" id="item_name" name="item" type="text" placeholder="Food Name" required>
           </div>
         </div>
 

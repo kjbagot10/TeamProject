@@ -12,11 +12,11 @@ $userName = getUserNameByID(userID: $userID);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve form inputs
-  $item_name = htmlspecialchars($_POST['item_name']);
+  $item_name = htmlspecialchars($_POST['item']);
   $category_name = htmlspecialchars($_POST['category_name']);
   $expiry_date = htmlspecialchars($_POST['expiry_date']);
   $storage_type_name = htmlspecialchars($_POST['storage_type_name']);
-  $quantity = htmlspecialchars($_POST['quantity']);  // You need to get quantity from the form
+  $quantity = NULL;  // You need to get quantity from the form
   $current_date = date('Y-m-d');
   $barcode_num = NULL;  // You can set this to NULL if you're not using barcode numbers
   
