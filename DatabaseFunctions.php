@@ -46,6 +46,7 @@ function setPredefTable($dbConn)
     return $predefinedTable;
 }
 
+// cat options of sorting
  function getCatForSort($dbConn): string
   {
     $stringTo = "";
@@ -70,7 +71,7 @@ function setPredefTable($dbConn)
     return $stringTo;
  }
 
-
+// cat options for adding
  function getCatForAdd($dbConn): string  {
     $sqlQuery = "
     SELECT 
@@ -86,7 +87,54 @@ function setPredefTable($dbConn)
     return $stringToShow;
 }
 
- function setFoodInventoryTable($dbConn, $userID): string
+ 
+
+// getting storage to use for sort
+function getStorageForSort($dbConn): string
+{
+    $stringTo = "";
+    $sql = "SELECT * FROM GROUP_storage_types;";
+    $queryResult = $dbConn->query($sql);
+    while ($rowObj = $queryResult->fetchObject())
+    {
+        $stringTo .= "
+        <div class='dropdown-item'>
+            <label class='checkbox'>
+                {$rowObj->storage_type_name}
+                <input type='checkbox' id='{$rowObj->storage_type_id}' value='{$rowObj->storage_type_name}' onclick='foodTypeSort()'/>
+            </label>
+        </div>
+        ";
+    }
+    return $stringTo;
+
+}
+
+// storage for adding
+function getStorageForAdd($dbConn)
+{
+    $stringToShow = "";
+    $sql = "SELECT * FROM GROUP_storage_types;";
+    $queryResult = $dbConn->query($sql);
+    while ($rowObj = $queryResult->fetchObject()) {
+        $stringToShow .= "<option value='{$rowObj->storage_type_id}'>{$rowObj->storage_type_name}</option>";
+    }
+    return $stringToShow;
+
+}
+
+function getUserNameByID($userID)
+{
+    $dbConn = getConnection();
+    $sqlQuery = "SELECT username FROM GROUP_users WHERE user_id = :userID";
+    $stmt = $dbConn->prepare($sqlQuery);
+    $stmt->execute(["userID" => $userID]);
+    $userName = $stmt->fetchColumn();
+    return $userName;
+}
+
+// sets the inventory table
+function setFoodInventoryTable($dbConn, $userID): string
  {
     $inventoryTable = "";
   
@@ -111,37 +159,7 @@ function setPredefTable($dbConn)
     return $inventoryTable;   
 }
 
-function getStorageForSort($dbConn): string
-{
-    $stringTo = "";
-    $sql = "SELECT * FROM GROUP_storage_types;";
-    $queryResult = $dbConn->query($sql);
-    while ($rowObj = $queryResult->fetchObject())
-    {
-        $stringTo .= "
-        <div class='dropdown-item'>
-            <label class='checkbox'>
-                {$rowObj->storage_type_name}
-                <input type='checkbox' id='{$rowObj->storage_type_id}' value='{$rowObj->storage_type_name}' onclick='foodTypeSort()'/>
-            </label>
-        </div>
-        ";
-    }
-    return $stringTo;
-
-}
-
-function getUserNameByID($userID)
-{
-    $dbConn = getConnection();
-    $sqlQuery = "SELECT username FROM GROUP_users WHERE user_id = :userID";
-    $stmt = $dbConn->prepare($sqlQuery);
-    $stmt->execute(["userID" => $userID]);
-    $userName = $stmt->fetchColumn();
-    return $userName;
-}
-
-
+// viewInventoryTable
 function viewInventoryTable($dbConn, $userID)
 {
     $htmlString = '
