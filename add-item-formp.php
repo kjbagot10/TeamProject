@@ -1,6 +1,7 @@
 <?php
 require "DatabaseFunctions.php";
 $dbConn = getConnection();
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ $dbConn = getConnection();
         <div class="field">
           <label class="label" for="name">Name</label>
           <div class="control">
-            <input class="input" id="name" name="name" type="text" placeholder="Food Name" required>
+            <input class="input" id="name" name="item_name" type="text" placeholder="Food Name" required>
           </div>
         </div>
 
@@ -28,7 +29,7 @@ $dbConn = getConnection();
           <label class="label" for="foodType">Food Type</label>
           <div class="control">
             <div class="select">
-              <select id="foodType" name="foodType" required>
+              <select id="foodType" name="category_name" required>
               <option value="">Select Food Type</option>
                 <?php echo getCatForAdd($dbConn); ?>
               </select>
@@ -40,11 +41,9 @@ $dbConn = getConnection();
           <label class="label" for="storageType">Storage Type</label>
           <div class="control">
             <div class="select">
-              <select id="storageType" name="storageType" required>
-                <option value="">Select Storage Type</option>
-                <option value="Refrigerated">Refrigerated</option>
-                <option value="Frozen">Frozen</option>
-                <option value="Shelf">Shelf</option>
+              <select id="storageType" name="storage_type_name" required>
+                <option value="">Select Food Type</option>
+                <?php echo getStorageForAdd($dbConn); ?>
               </select>
             </div>
           </div>
@@ -53,7 +52,7 @@ $dbConn = getConnection();
         <div class="field">
           <label class="label" for="expiryDate">Expiry Date</label>
           <div class="control">
-            <input class="input" id="expiryDate" name="expiryDate" type="date" required>
+            <input class="input" id="expiryDate" name="expiry_date" type="date" required>
           </div>
         </div>
 
