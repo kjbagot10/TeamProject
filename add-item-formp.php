@@ -19,7 +19,8 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="add-inventory.css">
+  
   <title>Add Item Form</title>
 </head>
 <body>
@@ -98,6 +99,8 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
           </div>
         </div>
       </form>
+      <a href="foodInventory.php" class="button">View Inventory</a> <!-- Button to view inventory -->
+
     </div>
   </div>
 </body>
