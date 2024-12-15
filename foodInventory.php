@@ -29,33 +29,6 @@ $userName = getUserNameByID(userID: $userID);
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <link rel="stylesheet" href="foodInventorystyle.css">
-    <!-- Font Awesome for icons -->
-    <!-- <style>
-      :root {
-        --bulma-primary-h: 0deg;
-        --bulma-primary-s: 0%;
-        --bulma-primary-l: 83%;
-        --bulma-link-h: 260deg;
-        --bulma-link-s: 60%;
-        --bulma-link-l: 65%;
-      }
-
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #d3d3d3;
-        color: #000;
-      }
-      .navbar {
-        background-color: #f5f5f5;
-      }
-      
-      .navbar-start {
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    </style> -->
     <title>Food Inventory</title>
     <!-- Title of the webpage -->
   </head>
@@ -69,7 +42,7 @@ $userName = getUserNameByID(userID: $userID);
         <a href="wasteManagment.php">Waste Management</a>
         <a href="#">About Us</a>
       </nav>
-      <divdiv class="profile-icon" onclick="toggleMenu()">
+      <div class="profile-icon" onclick="toggleMenu()">
         <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
       </div>
       <div class="dropdown-menu" id="menuContent">
@@ -108,6 +81,7 @@ $userName = getUserNameByID(userID: $userID);
             }
             ?> 
         </div>
+        <a href="add-item-formp.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->
 
     </div>
     

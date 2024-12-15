@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+  
+    <meta charset="UTF-8" />
+    <!-- Sets the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ensures responsiveness on mobile devices -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <!-- Bulma CSS framework for styling -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="foodInventorystyle.css">
+    
+    <title>Food Inventory</title>
+    <!-- Title of the webpage -->
+  </head>
+  <body>
+  <header>
+      <div class="logo">Logo</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Something</a>
+        <a href="foodInventory.php">Food Inventory</a>
+        <a href="wasteManagment.php">Waste Management</a>
+        <a href="#">About Us</a>
+      </nav>
+      <divdiv class="profile-icon" onclick="toggleMenu()">
+        <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
+      </div>
+      <div class="dropdown-menu" id="menuContent">
+        <?php if ($isLoggedIn): ?>
+          <a href="logOut.php">Logout</a>
+        <?php else: ?>
+          <a href="loginForm.php">Login</a>
+        <?php endif; ?>
+      </div>
+      <script>
+        function toggleMenu() {
+          var menuContent = document.getElementById("menuContent");
+          menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+        }
+      </script>
+    </header>

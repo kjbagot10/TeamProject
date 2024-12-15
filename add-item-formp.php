@@ -1,12 +1,16 @@
 <?php
 require "DatabaseFunctions.php";
 $dbConn = getConnection();
+
 require_once "LoginFunctions.php";
 startSession();
 //Checks if the user is logged in
 $isLoggedIn = checkLogin();
+if ($isLoggedIn):
+  $userID = $_SESSION["userID"];
+  $userName = getUserNameByID($userID);
+endif;
 echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
-$userID = $_SESSION["userID"];
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +19,37 @@ $userID = $_SESSION["userID"];
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  <title>Food Inventory Form</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>Add Item Form</title>
 </head>
 <body>
-  <div class="container has-text-centered">
+  <header>
+    <div class="logo">Logo</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Something</a>
+      <a href="foodInventory.php">Food Inventory</a>
+      <a href="wasteManagment.php">Waste Management</a>
+      <a href="#">About Us</a>
+    </nav>
+    <divdiv class="profile-icon" onclick="toggleMenu()">
+      <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
+    </div>
+    <div class="dropdown-menu" id="menuContent">
+      <?php if ($isLoggedIn): ?>
+        <a href="logOut.php">Logout</a>
+      <?php else: ?>
+        <a href="loginForm.php">Login</a>
+      <?php endif; ?>
+    </div>
+    <script>
+      function toggleMenu() {
+        var menuContent = document.getElementById("menuContent");
+        menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </header>
+    <div class="container has-text-centered">
     <div class="title is-4">Add Food to Inventory</div>
 
     <div class="box">
