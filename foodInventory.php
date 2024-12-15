@@ -6,7 +6,7 @@ startSession();
 //Checks if the user is logged in
 $isLoggedIn = checkLogin();
 echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
-$userID = checkUserId();
+$userID = $_SESSION["userID"];
 $userName = getUserNameByID(userID: $userID);
 ?>
 
