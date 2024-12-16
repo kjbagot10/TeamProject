@@ -72,7 +72,7 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
               $userID = $_SESSION["userID"];
               echo viewInventoryTable($dbConn, $userID);
               echo '<a href="add-item-formp.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->';
-
+              
             }
             else
             {
