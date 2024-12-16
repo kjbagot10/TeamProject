@@ -135,14 +135,14 @@ function getUserNameByID($userID)
 
 // sets the inventory table
 function setFoodInventoryTable($dbConn, $userID): string
- {
+{
     $inventoryTable = "";
-  
-    $sql = "SELECT GROUP_inventory_items.item_name, GROUP_inventory_items.expiry_date, GROUP_categories.category_name, GROUP_storage_types.storage_type_name, DATE(GROUP_inventory_items.date_added) as date_added 
+    $sql = "SELECT GROUP_inventory_items.item_id, GROUP_inventory_items.item_name, GROUP_inventory_items.expiry_date, GROUP_categories.category_name, 
+        GROUP_storage_types.storage_type_name, DATE(GROUP_inventory_items.date_added) as date_added -- added id to post to the database 
     FROM  GROUP_inventory_items 
     INNER JOIN GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_id
-     INNER JOIN GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_id 
-     WHERE GROUP_inventory_items.user_id = :userID;";
+    INNER JOIN GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_id 
+    WHERE GROUP_inventory_items.user_id = :userID;";
 
     $stmt = $dbConn->prepare($sql);
     $stmt->execute(["userID" => $userID]);
@@ -154,6 +154,8 @@ function setFoodInventoryTable($dbConn, $userID): string
             <td>{$row['storage_type_name']}</td>
             <td>{$row['category_name']}</td>
             <td>{$row['date_added']}</td>
+            <td><input type='checkbox' class='item-checkbox' data-item-id='{$row['item_id']}'></td> <!-- checkbox to select items -->   
+
             </tr> \n";
     }
     return $inventoryTable;   
@@ -269,6 +271,8 @@ function viewInventoryTable($dbConn, $userID)
                 <th><abbr title="Storage Method">Storage Method</abbr></th>
                 <th><abbr title="Type">Item Type</abbr></th>
                 <th><abbr title="Date added">Date Added</abbr></th>
+                <th><abbr title="Select">Select</abbr></th>
+
             </tr>
         </thead>
         <tbody>';
@@ -279,5 +283,33 @@ function viewInventoryTable($dbConn, $userID)
     ';
 
     echo $htmlString;
+}
+// get common items from predefined items table geoo
+function getCommonItems($dbConn) {
+    $sql = "SELECT item_name, category, default_storage_type FROM GROUP_predefined_items";
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function addToCommonItems($dbConn, $itemData) { // add to common items when user adds a new item  to predefined items table geoo
+    try {
+        $sql = "INSERT INTO GROUP_predefined_items (item_name, category, default_storage_type) 
+                VALUES (:name, :category, :storage)
+                ON DUPLICATE KEY UPDATE 
+                category = :category,
+                default_storage_type = :storage";
+        
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute([
+            ':name' => $itemData['name'],
+            ':category' => $itemData['category'],
+            ':storage' => $itemData['storage']
+        ]);
+        return true;
+    } catch (Exception $e) {
+        error_log("Error adding to common items: " . $e->getMessage());
+        return false;
+    }
 }
 ?>

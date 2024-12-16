@@ -12,6 +12,7 @@ endif;
 echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -64,29 +65,85 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
     <div class="container has-text-centered">
        <!-- Title for the inventory -->
       <div class="title is-4">My Food Inventory</div>
-        <div class="container has-text-centered">
-            <!-- need to change this -->
-            <?php 
-            if ($isLoggedIn)
-            {
+      
+      <!-- Add this delete button here -->
+      <div class="delete-controls">
+          <button id="deleteSelectedBtn" class="button is-danger" onclick="deleteSelectedItems()" disabled>
+              Delete Selected Items
+          </button>
+      </div>
+
+      <div class="container has-text-centered">
+          <!-- need to change this -->
+          <?php 
+          if ($isLoggedIn)
+          {
               $userID = $_SESSION["userID"];
               echo viewInventoryTable($dbConn, $userID);
-              echo '<a href="add-item-formp.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->';
-              
-            }
-            else
-            {
+          }
+          else
+          {
               echo '
               <p>Please sign in or create an account.</p>
               <p><a href="loginForm.php">Log in</a></p>
               <p><a href="registerForm.php">Register Form</a></p>
               ';
-            }
-            ?> 
-        </div>
+          }
+          ?> 
+      </div>
+        <a href="addInventoryFormGeorge.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->
 
     </div>
     
     <script src="toggleScript.js"></script>
+    <script> //by George
+    document.addEventListener('DOMContentLoaded', function() {
+        // activate delete button when items are selected
+        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', updateDeleteButton);
+        });
+    });
+// update delete button when items are selected
+    function updateDeleteButton() {
+        const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+        const deleteButton = document.getElementById('deleteSelectedBtn');
+        deleteButton.disabled = checkedBoxes.length === 0;
+    }
+// delete items when delete button is clicked
+    async function deleteSelectedItems() {
+        const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+        const itemIds = Array.from(checkedBoxes).map(cb => cb.dataset.itemId);
+        // confirm deletion
+        if (!confirm('Are you sure you want to delete the selected items?')) {
+            return;
+        }
+        // delete items
+        for (const id of itemIds) {
+            try {
+                const response = await fetch('deleteItemGeorge.php', { 
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `id=${id}`
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    // remove from the table
+                    const row = document.querySelector(`input[data-item-id="${id}"]`).closest('tr');
+                    row.remove();
+                } else {
+                    alert('Error deleting item: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error deleting item');
+            }
+        }
+        
+        updateDeleteButton();
+    }
+    </script>
   </body>
 </html>

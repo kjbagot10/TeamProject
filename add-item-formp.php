@@ -19,19 +19,18 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  <link rel="stylesheet" href="add-inventory.css">
-  
+  <link rel="stylesheet" href="styles.css">
   <title>Add Item Form</title>
 </head>
 <body>
   <header>
     <div class="logo">Logo</div>
     <nav>
-        <a href="HomePage.php">Home</a>
-        <a href="#">Something</a>
-        <a href="foodInventory.php">Food Inventory</a>
-        <a href="wasteManagment.php">Waste Management</a>
-        <a href="#">About Us</a>
+      <a href="#">Home</a>
+      <a href="#">Something</a>
+      <a href="foodInventory.php">Food Inventory</a>
+      <a href="wasteManagment.php">Waste Management</a>
+      <a href="#">About Us</a>
     </nav>
     <divdiv class="profile-icon" onclick="toggleMenu()">
       <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
@@ -99,8 +98,6 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
           </div>
         </div>
       </form>
-      <a href="foodInventory.php" class="button">View Inventory</a> <!-- Button to view inventory -->
-
     </div>
   </div>
 </body>
