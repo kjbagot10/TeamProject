@@ -67,19 +67,24 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
       <div class="title is-4">My Food Inventory</div>
       
       <!-- Add this delete button here -->
-      <div class="delete-controls">
-          <button id="deleteSelectedBtn" class="button is-danger" onclick="deleteSelectedItems()" disabled>
-              Delete Selected Items
-          </button>
-      </div>
-
+     
       <div class="container has-text-centered">
           <!-- need to change this -->
           <?php 
           if ($isLoggedIn)
           {
+              echo '  
+              <div class="delete-controls">
+                  <button id="deleteSelectedBtn" class="button is-danger" onclick="deleteSelectedItems()" disabled>
+                      Delete Selected Items
+                  </button>
+              </div> ';
+
               $userID = $_SESSION["userID"];
               echo viewInventoryTable($dbConn, $userID);
+
+              echo '<a href="addInventoryFormGeorge.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->';
+
           }
           else
           {
@@ -91,7 +96,6 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
           }
           ?> 
       </div>
-        <a href="addInventoryFormGeorge.php" class="button">Add To Inventory</a> <!-- Button to add items to inventory -->
 
     </div>
     
