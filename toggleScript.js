@@ -158,13 +158,12 @@ function searchByNameFunc() {
     if (td) {
       txtValue = td.textContend || td.innerText;
       if (txtValue.toUpperCase().startsWith(filter)) {
-        tr[i].style.display = "";
+        foodTypeSort();
       } else {
         tr[i].style.display = "none";
       }
     }       
   }
-
 }
 
 function foodTypeSort() {
