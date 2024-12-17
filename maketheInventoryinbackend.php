@@ -36,6 +36,7 @@ try {
                 GROUP_categories ON GROUP_inventory_items.category = GROUP_categories.category_name
             INNER JOIN 
                 GROUP_storage_types ON GROUP_inventory_items.storage_type = GROUP_storage_types.storage_type_name
+                
         ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();

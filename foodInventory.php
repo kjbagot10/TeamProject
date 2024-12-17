@@ -47,6 +47,8 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
       </nav>
       <div class="profile-icon" onclick="toggleMenu()">
         <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
+
+ 
       </div>
       <div class="dropdown-menu" id="menuContent">
         <?php if ($isLoggedIn): ?>
@@ -95,10 +97,14 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
               ';
           }
           ?> 
+
+  
       </div>
 
-    </div>
     
+
+
+
     <script src="toggleScript.js"></script>
     <script> //by George
     document.addEventListener('DOMContentLoaded', function() {

@@ -73,6 +73,7 @@ function setPredefTable($dbConn)
 
 // cat options for adding
  function getCatForAdd($dbConn): string  {
+
     $sqlQuery = "
     SELECT 
         category_id, category_name
@@ -146,6 +147,7 @@ function setFoodInventoryTable($dbConn, $userID): string
 
     $stmt = $dbConn->prepare($sql);
     $stmt->execute(["userID" => $userID]);
+
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($results as $row) {
         $inventoryTable .= "<tr>
@@ -311,5 +313,21 @@ function addToCommonItems($dbConn, $itemData) { // add to common items when user
         error_log("Error adding to common items: " . $e->getMessage());
         return false;
     }
+function getStorageForSort($dbConn)
+{
+    $sql = "SELECT * FROM GROUP_storage_types;";
+    $queryResult = $dbConn->query($sql);
+    while ($rowObj = $queryResult->fetchObject())
+    {
+        echo "
+        <div class='dropdown-item'>
+            <label class='checkbox'>
+                {$rowObj->storage_type_name}
+                <input type='checkbox' id='{$rowObj->storage_type_id}' value='{$rowObj->storage_type_name}'/>
+            </label>
+        </div>
+        ";
+    }
+
 }
 ?>
