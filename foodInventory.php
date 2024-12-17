@@ -47,7 +47,11 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
       </nav>
       <div class="profile-icon" onclick="toggleMenu()">
         <?php echo $isLoggedIn ? strtoupper(substr($userName, 0, 1)) : 'G'; ?>
-      </div>
+    <nav class="navbar" role="navigation" aria-label="main navigation"></nav>
+    <div class="title is-4">My Food Inventory</div>
+    <!-- Title for the inventory -->
+
+    
       <div class="dropdown-menu" id="menuContent">
         <?php if ($isLoggedIn): ?>
           <a href="logOut.php">Logout</a>
@@ -99,6 +103,7 @@ echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
 
     </div>
     
+
     <script src="toggleScript.js"></script>
     <script> //by George
     document.addEventListener('DOMContentLoaded', function() {
