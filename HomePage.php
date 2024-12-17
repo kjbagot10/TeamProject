@@ -1,28 +1,26 @@
+<?php
+require "DatabaseFunctions.php";
+require_once "LoginFunctions.php";
+startSession();
+//Checks if the user is logged in
+$isLoggedIn = checkLogin();
+if ($isLoggedIn):
+  $userID = $_SESSION["userID"];
+  $userName = getUserNameByID($userID);
+endif;
+echo "<script>const isLoggedIn = '$isLoggedIn';</script>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
-  
     <meta charset="UTF-8" />
-    <!-- Sets the character encoding for the document -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Ensures responsiveness on mobile devices -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
-    />
-    <!-- Bulma CSS framework for styling -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <link rel="stylesheet" href="foodInventorystyle.css">
-    
-    <title>Food Inventory</title>
-    <!-- Title of the webpage -->
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-  <header>
+    <header>
       <div class="logo">Logo</div>
       <nav>
         <a href="#">Home</a>
@@ -48,3 +46,21 @@
         }
       </script>
     </header>
+
+    <main>
+      <div class="cards">
+        <div class="card">
+          <p>Food Saved</p>
+        </div>
+        <div class="card">
+          <p>Waste Reduced</p>
+        </div>
+        <div class="card">
+          <p>Sort My Waste</p>
+          <button>Upload Image</button>
+        </div>
+      </div>
+    </main>
+    <script src="toggleScript.js"></script>
+  </body>
+</html>
